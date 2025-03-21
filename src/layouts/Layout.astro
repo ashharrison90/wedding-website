@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import NavBar from "../components/NavBar/NavBar.astro";
 interface Props {
 	title: string;
 }
@@ -14,16 +15,12 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="text-orange-400 bg-zinc-50 p-4">
-		<nav class="flex justify-end gap-2 text-emerald-800">
-			<a href="/">Home</a>
-			<a href="/accommodation">Accommodation</a>
-			<a href="/travel">Travel</a>
-			<a href="/q-and-a">Q&A</a>
-			<a href="/rsvp">RSVP</a>
-		</nav>
-		<div class="max-w-6xl mx-auto pt-2 pb-2">
-			<slot />
+	<body>
+		<NavBar />
+		<div class="px-4 pb-4">
+			<main class="max-w-6xl mx-auto pt-4">
+				<slot />
+			</div>
 		</div>
 	</body>
 </html>

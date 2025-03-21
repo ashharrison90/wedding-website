@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuestionAndAnswer from '../components/QuestionAndAnswer.astro';
+
+const questions: Array<{
+  question: string;
+  answer: string
+}> = [{
+  question: "How do we book accommodation?",
+  answer: "All the latest information is on the Accommodation tab!"
+}, {
+  question: "How long should we book accommodation for?",
+  answer: "The wedding weekend will be from Friday evening till Sunday but you're welcome to stay for longer if you'd like!"
+}, {
+  question: "How do we get there?",
+  answer: "We will be providing discounted ferry tickets. See the latest information on the Travel tab!"
+}, {
+  question: "Will there be a shuttle service?",
+  answer: "A shuttle service will be provided on the Saturday evening to return guests to Tapnell Farm. If you're staying off site you will need to arrange your own transportation."
+}, {
+  question: "Is there parking at the wedding venue?",
+  answer: "Yes, there is ample parking at the wedding venue and at Tapnell Farm so you can easily drive between them."
+}, {
+  question: "What's the dress code?",
+  answer: "Whatever you feel comfortable in!"
+}, {
+  question: "Can we bring our dog?",
+  answer: "We'd love to have your children attend the wedding! Please let us know on the RSVP if you'll be bringing any children and what food requirements they have."
+}, {
+  question: "Is there parking at the wedding venue?",
+  answer: "Dogs are welcome on Tapnell Farm! You're more than welcome to bring your dog for the weekend but we ask that they stay in your accommodation for the wedding day itself."
+}]
+---
+<Layout title="Q & A">
+  {questions.map(({ question, answer }) => (
+    <QuestionAndAnswer question={question} answer={answer} />
+  ))}
+</Layout>

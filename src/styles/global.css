@@ -5,6 +5,12 @@
   --default-font-family: 'Montserrat', sans-serif;
   --font-serif: 'Ultra', serif;
   --font-hero: 'Danfo', sans-serif;
+
+  --color-canvas: #F6E8C5;          /* light yellow */
+  --color-primary: #F1784D;         /* orange */
+  --color-secondary: #FEB662;       /* yellow */
+  --color-contrast: #536343;        /* dark green */
+  --color-contrast-light: #819766;  /* light green */
 }
 
 @layer base {
@@ -12,7 +18,7 @@
     @apply underline text-sky-500 hover:text-sky-700 visited:text-sky-500
   }
   html {
-    @apply text-orange-400;
-    @apply bg-zinc-50;
+    @apply text-primary;
+    @apply bg-canvas;
   }
 }

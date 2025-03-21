@@ -9,4 +9,5 @@ export default defineConfig({
   },
   // github pages config
   site: "https://ashanna.wedding",
+  trailingSlash: "never",
 });

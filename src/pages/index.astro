@@ -3,9 +3,11 @@ import Layout from '../layouts/Layout.astro';
 import Countdown from '../components/Countdown.astro';
 import HeroImage from '../components/HeroImage.astro';
 import usImage from '../assets/images/home/us.webp';
+import DiscoBall from '../components/DiscoBall.astro';
 ---
 
 <Layout title="Ash + Anna">
+	<DiscoBall />
 	<Countdown countdownDate={new Date('2026-07-18T00:00:00')} />
 	<h1 class="font-hero text-6xl">Ash & Anna</h1>
 	<span class="text-2xl text-emerald-800">18 · 07 · 2026</span>

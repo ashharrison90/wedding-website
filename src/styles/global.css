@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Danfo&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ultra&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Danfo&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Ultra&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --default-font-family: 'Montserrat', sans-serif;
-  --font-serif: 'Ultra', serif;
-  --font-hero: 'Danfo', sans-serif;
+  --default-font-family: "Montserrat", sans-serif;
+  --font-serif: "Ultra", serif;
+  --font-hero: "Danfo", sans-serif;
 
-  --color-canvas: #F6E8C5;          /* light yellow */
-  --color-primary: #F1784D;         /* orange */
-  --color-secondary: #FEB662;       /* yellow */
-  --color-contrast: #536343;        /* dark green */
-  --color-contrast-light: #819766;  /* light green */
+  --color-canvas: #f6e8c5; /* light yellow */
+  --color-primary: #f1784d; /* orange */
+  --color-secondary: #feb662; /* yellow */
+  --color-contrast: #536343; /* dark green */
+  --color-contrast-light: #819766; /* light green */
 }
 
 @layer base {
   a {
-    @apply underline text-sky-500 hover:text-sky-700 visited:text-sky-500
+    @apply text-sky-500 underline visited:text-sky-500 hover:text-sky-700;
   }
   html {
     @apply text-primary;

@@ -1,11 +1,12 @@
 ---
 interface Props {
-	question: string;
+  question: string;
   answer: string;
 }
 const { question, answer } = Astro.props;
 ---
-<div class="flex max-w-xl m-auto flex-col gap-2 p-2 items-center text-center">
-  <h2 class="text-2xl font-serif">{question}</h2>
+
+<div class="m-auto flex max-w-xl flex-col items-center gap-2 p-2 text-center">
+  <h2 class="font-serif text-2xl">{question}</h2>
   <p>{answer}</p>
 </div>

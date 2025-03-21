@@ -1,26 +1,46 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import accommodation1 from '../assets/images/accommodation/1.webp';
-import accommodation2 from '../assets/images/accommodation/2.webp';
-import accommodation3 from '../assets/images/accommodation/3.webp';
-import accommodation4 from '../assets/images/accommodation/4.webp';
-import accommodation5 from '../assets/images/accommodation/5.webp';
-import accommodation6 from '../assets/images/accommodation/6.webp';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import accommodation1 from "../assets/images/accommodation/1.webp";
+import accommodation2 from "../assets/images/accommodation/2.webp";
+import accommodation3 from "../assets/images/accommodation/3.webp";
+import accommodation4 from "../assets/images/accommodation/4.webp";
+import accommodation5 from "../assets/images/accommodation/5.webp";
+import accommodation6 from "../assets/images/accommodation/6.webp";
 ---
+
 <Layout title="Accommodation">
-  <p>We have reserved Tapnell Farm's <a href="https://tapnellfarm.com/stay/toms-eco-lodge-glamping" target="_blank">Eco Lodge Glamping</a> and <a href="https://tapnellfarm.com/stay/farm-cottages-houses" target="_blank">Farm House Cottages</a> for you to stay at for the weekend.</p>
-  <p>These options are a 2 minute drive or 20 minute walk from the wedding venue. We will be providing end of night transportation back to Tapnell Farm, but if you wish to book something off site please feel free to do so.</p>
-  <p>These options are reserved until the end of June 2025, after that you will have to compete with the general public!</p>
-  <p>We recommend you book from at least Friday till Sunday to fully enjoy the weekend. We will be on site from Thursday till Monday so if you'd like to stay longer please feel free.</p>
+  <p>
+    We have reserved Tapnell Farm's <a
+      href="https://tapnellfarm.com/stay/toms-eco-lodge-glamping"
+      target="_blank">Eco Lodge Glamping</a
+    > and <a
+      href="https://tapnellfarm.com/stay/farm-cottages-houses"
+      target="_blank">Farm House Cottages</a
+    > for you to stay at for the weekend.
+  </p>
+  <p>
+    These options are a 2 minute drive or 20 minute walk from the wedding venue.
+    We will be providing end of night transportation back to Tapnell Farm, but
+    if you wish to book something off site please feel free to do so.
+  </p>
+  <p>
+    These options are reserved until the end of June 2025, after that you will
+    have to compete with the general public!
+  </p>
+  <p>
+    We recommend you book from at least Friday till Sunday to fully enjoy the
+    weekend. We will be on site from Thursday till Monday so if you'd like to
+    stay longer please feel free.
+  </p>
   <p>Booking information will be added soon.</p>
 
   <div class="grid grid-cols-3 gap-1">
-    <Image class="object-cover h-full" src={accommodation1} alt="" />
-    <Image class="object-cover h-full" src={accommodation2} alt="" />
-    <Image class="object-cover h-full" src={accommodation3} alt="" />
-    <Image class="object-cover h-full" src={accommodation4} alt="" />
-    <Image class="object-cover h-full" src={accommodation5} alt="" />
-    <Image class="object-cover h-full" src={accommodation6} alt="" />
+    <Image class="h-full object-cover" src={accommodation1} alt="" />
+    <Image class="h-full object-cover" src={accommodation2} alt="" />
+    <Image class="h-full object-cover" src={accommodation3} alt="" />
+    <Image class="h-full object-cover" src={accommodation4} alt="" />
+    <Image class="h-full object-cover" src={accommodation5} alt="" />
+    <Image class="h-full object-cover" src={accommodation6} alt="" />
   </div>
 </Layout>

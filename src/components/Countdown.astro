@@ -4,14 +4,19 @@ interface Props {
 }
 const { countdownDate } = Astro.props;
 ---
+
 <span>
-  <span id="counter" data-countdown-date={countdownDate.getTime()} /> days to go!
+  <span id="counter" data-countdown-date={countdownDate.getTime()}></span> days to
+  go!
 </span>
 
 <script>
   function updateCountdown() {
-    const counterEl = document.getElementById('counter');
-    const countdownDateMs = parseInt(counterEl?.getAttribute('data-countdown-date') ?? '0', 10);
+    const counterEl = document.getElementById("counter");
+    const countdownDateMs = parseInt(
+      counterEl?.getAttribute("data-countdown-date") ?? "0",
+      10,
+    );
     if (counterEl) {
       counterEl.textContent = `${calcDaysRemaining(countdownDateMs)}`;
     }

@@ -1,5 +1,4 @@
 {
-  "name": "",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -12,5 +11,17 @@
     "@tailwindcss/vite": "^4.0.15",
     "astro": "^5.5.3",
     "tailwindcss": "^4.0.15"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.5.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.11"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write"
+    ]
   }
 }

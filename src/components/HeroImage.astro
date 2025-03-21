@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 interface Props {
   altText: string;
@@ -10,11 +10,22 @@ interface Props {
 
 const { altText, image, width, height } = Astro.props;
 ---
-<div class="w-fit h-fit">
-  <div class="relative ml-[calc(30%/2)] mb-[calc(35%/2)]">
-    <Image width={width} height={height} class="rounded-4xl border-secondary border-8 md:border-16" src={image} alt={altText} />
-    <svg class="absolute top-[35%] -left-[30%] -z-10 h-full w-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <circle class="fill-primary" cx="50" cy="50" r="40%" />
+
+<div class="h-fit w-fit">
+  <div class="relative mb-[calc(35%/2)] ml-[calc(30%/2)]">
+    <Image
+      width={width}
+      height={height}
+      class="border-secondary rounded-4xl border-8 md:border-16"
+      src={image}
+      alt={altText}
+    />
+    <svg
+      class="absolute top-[35%] -left-[30%] -z-10 h-full w-full"
+      viewBox="0 0 100 100"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle class="fill-primary" cx="50" cy="50" r="40%"></circle>
     </svg>
   </div>
 </div>

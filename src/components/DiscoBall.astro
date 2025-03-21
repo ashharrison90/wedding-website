@@ -3,51 +3,65 @@
 </div>
 
 <style is:global>
-@keyframes rotateDiscoBall {
-    0% {transform: rotateX(90deg) rotateZ(0deg) rotate(0deg); }
-    100% {transform: rotateX(90deg) rotateZ(360deg) rotate(0deg); }
-}
+  @keyframes rotateDiscoBall {
+    0% {
+      transform: rotateX(90deg) rotateZ(0deg) rotate(0deg);
+    }
+    100% {
+      transform: rotateX(90deg) rotateZ(360deg) rotate(0deg);
+    }
+  }
 
-@keyframes rotateDiscoBallMiddle {
-    0% {transform: rotateX(90deg) rotateY(0deg) rotate(0deg); }
-    100% {transform: rotateX(90deg) rotateY(-360deg) rotate(0deg); }
-}
+  @keyframes rotateDiscoBallMiddle {
+    0% {
+      transform: rotateX(90deg) rotateY(0deg) rotate(0deg);
+    }
+    100% {
+      transform: rotateX(90deg) rotateY(-360deg) rotate(0deg);
+    }
+  }
 
-@keyframes reflect {
-    0% {opacity: 1;}
-    50% {opacity: 0.4;}  
-    100% {opacity: 1;}  
-}
+  @keyframes reflect {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
-#discoBallOuter {
-  transform: rotateZ(-15deg);
-  position: relative;
-}
+  #discoBallOuter {
+    transform: rotateZ(-15deg);
+    position: relative;
+  }
 
-#discoBall {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  width: 300px;
-  height: 300px;
-  position: absolute;
-  top: 150px;
-  left: 50%;
-  margin-left: -150px;
-  -webkit-animation: rotateDiscoBall 18s linear infinite;
-  animation: rotateDiscoBall 18s linear infinite;
-}
+  #discoBall {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    margin-left: -150px;
+    -webkit-animation: rotateDiscoBall 18s linear infinite;
+    animation: rotateDiscoBall 18s linear infinite;
+  }
 
-.square {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;	
-  position: absolute;
-  top: 150px;
-  left: 150px;
-  width: 19px;
-  height: 19px;
-  position: absolute;
-  transform: rotateX(90deg) rotateY(0deg) translateZ(0px);
-}
+  .square {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    transform: rotateX(90deg) rotateY(0deg) translateZ(0px);
+  }
 </style>
 
 <script>
@@ -56,47 +70,67 @@
   var squareSize = 19.5;
   var prec = 19.55;
   var fuzzy = 0.001;
-  var inc = (Math.PI-fuzzy) / prec;
+  var inc = (Math.PI - fuzzy) / prec;
   var discoBall = document.getElementById("discoBall");
 
-  for(var t = fuzzy; t < Math.PI; t += inc) {
+  for (var t = fuzzy; t < Math.PI; t += inc) {
     var z = radius * Math.cos(t);
-    var currentRadius = Math.abs((radius * Math.cos(0) * Math.sin(t)) - (radius * Math.cos(Math.PI) * Math.sin(t))) / 2.5;
+    var currentRadius =
+      Math.abs(
+        radius * Math.cos(0) * Math.sin(t) -
+          radius * Math.cos(Math.PI) * Math.sin(t),
+      ) / 2.5;
     var circumference = Math.abs(2 * Math.PI * currentRadius);
     var squaresThatFit = Math.floor(circumference / squareSize);
-    var angleInc = (Math.PI*2-fuzzy) / squaresThatFit;
-    for(var i=angleInc/2+fuzzy; i<(Math.PI*2); i+=angleInc) {
+    var angleInc = (Math.PI * 2 - fuzzy) / squaresThatFit;
+    for (var i = angleInc / 2 + fuzzy; i < Math.PI * 2; i += angleInc) {
       var square = document.createElement("div");
       var squareTile = document.createElement("div");
       squareTile.style.width = squareSize + "px";
       squareTile.style.height = squareSize + "px";
       squareTile.style.transformOrigin = "0 0 0";
       squareTile.style.webkitTransformOrigin = "0 0 0";
-      squareTile.style.webkitTransform = "rotate(" + i + "rad) rotateY(" + t + "rad)";
+      squareTile.style.webkitTransform =
+        "rotate(" + i + "rad) rotateY(" + t + "rad)";
       squareTile.style.transform = "rotate(" + i + "rad) rotateY(" + t + "rad)";
       squareTile.style.backgroundColor = randomColor();
-      console.log('color', squareTile.style.backgroundColor);
+      console.log("color", squareTile.style.backgroundColor);
       square.appendChild(squareTile);
       square.className = "square";
       squareTile.style.webkitAnimation = "reflect 2s linear infinite";
-      squareTile.style.webkitAnimationDelay = String(randomNumber(0,20)/10) + "s";
+      squareTile.style.webkitAnimationDelay =
+        String(randomNumber(0, 20) / 10) + "s";
       squareTile.style.animation = "reflect 2s linear infinite";
-      squareTile.style.animationDelay = String(randomNumber(0,20)/10) + "s";
+      squareTile.style.animationDelay = String(randomNumber(0, 20) / 10) + "s";
       squareTile.style.backfaceVisibility = "hidden";
       var x = radius * Math.cos(i) * Math.sin(t);
       var y = radius * Math.sin(i) * Math.sin(t);
-      square.style.webkitTransform = "translateX(" + Math.ceil(x) + "px) translateY(" + y + "px) translateZ(" + z + "px)";
-      square.style.transform = "translateX(" + x + "px) translateY(" + y + "px) translateZ(" + z + "px)";
+      square.style.webkitTransform =
+        "translateX(" +
+        Math.ceil(x) +
+        "px) translateY(" +
+        y +
+        "px) translateZ(" +
+        z +
+        "px)";
+      square.style.transform =
+        "translateX(" +
+        x +
+        "px) translateY(" +
+        y +
+        "px) translateZ(" +
+        z +
+        "px)";
       discoBall?.appendChild(square);
     }
   }
 
   function randomElement(array: string[]) {
     return array[Math.floor(Math.random() * array.length)];
-  } 
+  }
 
   function randomColor() {
-    var colours = ['#FEB662', '#F1784D', '#819766', '#F39AA0', '#7DB3D5'];
+    var colours = ["#FEB662", "#F1784D", "#819766", "#F39AA0", "#7DB3D5"];
     return randomElement(colours);
   }
 

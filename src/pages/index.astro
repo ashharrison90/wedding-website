@@ -1,19 +1,15 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Countdown from '../components/Countdown.astro';
-import HeroImage from '../components/HeroImage.astro';
-import usImage from '../assets/images/home/us.webp';
-import DiscoBall from '../components/DiscoBall.astro';
+import Layout from "../layouts/Layout.astro";
+import Countdown from "../components/Countdown.astro";
+import HeroImage from "../components/HeroImage.astro";
+import usImage from "../assets/images/home/us.webp";
+import DiscoBall from "../components/DiscoBall.astro";
 ---
 
 <Layout title="Ash + Anna">
-	<DiscoBall />
-	<Countdown countdownDate={new Date('2026-07-18T00:00:00')} />
-	<h1 class="font-hero text-6xl">Ash & Anna</h1>
-	<span class="text-2xl text-contrast-light">18 · 07 · 2026</span>
-	<HeroImage
-		altText="A picture of us"
-		image={usImage}
-		width={600}
-	/>
+  <DiscoBall />
+  <Countdown countdownDate={new Date("2026-07-18T00:00:00")} />
+  <h1 class="font-hero text-6xl">Ash & Anna</h1>
+  <span class="text-contrast-light text-2xl">18 · 07 · 2026</span>
+  <HeroImage altText="A picture of us" image={usImage} width={600} />
 </Layout>

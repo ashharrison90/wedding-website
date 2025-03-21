@@ -1,0 +1,29 @@
+---
+interface Props {
+  countdownDate: Date;
+}
+const { countdownDate } = Astro.props;
+---
+<span>
+  <span id="counter" data-countdown-date={countdownDate.getTime()} /> days to go!
+</span>
+
+<script>
+  function updateCountdown() {
+    const counterEl = document.getElementById('counter');
+    const countdownDateMs = parseInt(counterEl?.getAttribute('data-countdown-date') ?? '0', 10);
+    if (counterEl) {
+      counterEl.textContent = `${calcDaysRemaining(countdownDateMs)}`;
+    }
+  }
+
+  function calcDaysRemaining(countdownDateMs: number) {
+    const MS_IN_DAY = 1000 * 60 * 60 * 24;
+    const now = new Date().getTime();
+    const difference = Math.max(countdownDateMs - now, 0);
+    return Math.ceil(difference / MS_IN_DAY);
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000 * 60);
+</script>

@@ -1,9 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Countdown from '../components/Countdown.astro';
 import venueImage from '../assets/images/home/venue.webp';
 import { Image } from 'astro:assets';
 ---
 
 <Layout title="Ash + Anna">
 	<Image src={venueImage} alt="The venue" />
+	<Countdown countdownDate={new Date('2026-07-18T00:00:00')} />
 </Layout>

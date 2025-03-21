@@ -32,7 +32,9 @@ const questions: Array<{
 }]
 ---
 <Layout title="Q & A">
-  {questions.map(({ question, answer }) => (
-    <QuestionAndAnswer question={question} answer={answer} />
-  ))}
+  <div class="flex flex-col gap-8">
+    {questions.map(({ question, answer }) => (
+      <QuestionAndAnswer question={question} answer={answer} />
+    ))}
+  </div>
 </Layout>

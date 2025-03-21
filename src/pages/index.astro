@@ -8,8 +8,12 @@ import DiscoBall from "../components/DiscoBall.astro";
 
 <Layout title="Ash + Anna">
   <DiscoBall />
-  <Countdown countdownDate={new Date("2026-07-18T00:00:00")} />
-  <h1 class="font-hero text-6xl">Ash & Anna</h1>
+  <h1
+    class="font-hero max-w-md text-8xl [text-shadow:_5px_5px_0_var(--color-secondary)]"
+  >
+    Ash & Anna
+  </h1>
   <span class="text-contrast-light text-2xl">18 · 07 · 2026</span>
+  <Countdown countdownDate={new Date("2026-07-18T00:00:00")} />
   <HeroImage altText="A picture of us" image={usImage} width={600} />
 </Layout>

@@ -4,5 +4,6 @@ interface Props {
   text: string;
 }
 const { href, text } = Astro.props;
+const isActive = Astro.url.pathname === href;
 ---
-<a href={href} class="no-underline text-emerald-800 hover:text-emerald-600">{text}</a>
+<a href={href} class=`${isActive ? 'underline' : 'no-underline'} uppercase text-xs text-emerald-800 hover:text-emerald-600`>{text}</a>

@@ -1,13 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Countdown from '../components/Countdown.astro';
-import venueImage from '../assets/images/home/venue.webp';
-import { Image } from 'astro:assets';
+import HeroImage from '../components/HeroImage.astro';
+import usImage from '../assets/images/home/us.webp';
 ---
 
 <Layout title="Ash + Anna">
-	<Image src={venueImage} alt="The venue" />
 	<Countdown countdownDate={new Date('2026-07-18T00:00:00')} />
 	<h1 class="font-hero text-6xl">Ash & Anna</h1>
 	<span class="text-2xl text-emerald-800">18 · 07 · 2026</span>
+	<HeroImage
+		altText="A picture of us"
+		image={usImage}
+		width={500}
+	/>
 </Layout>

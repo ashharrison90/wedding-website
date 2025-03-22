@@ -7,7 +7,7 @@ import Agenda from "../components/Agenda.astro";
 import { WEDDING_DATE } from "../constants";
 ---
 
-<Layout title="Ash + Anna">
+<Layout title="Ash + Anna" hideHeading>
   <Countdown countdownDate={WEDDING_DATE} />
   <HeroImage altText="A picture of us" image={usImage} width={600} />
   <Agenda />

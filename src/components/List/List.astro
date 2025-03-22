@@ -1,6 +1,6 @@
 ---
 import ListItem from "./ListItem.astro";
-import ListDivider from "./ListDivider.astro";
+import Divider from "../Divider.astro";
 import type { ListItemProps } from "./ListItemProps";
 
 interface Props {
@@ -16,7 +16,7 @@ const { items } = Astro.props;
     items.map((item, i) => (
       <>
         <ListItem {...item} />
-        {i < items.length - 1 && <ListDivider />}
+        {i < items.length - 1 && <Divider />}
       </>
     ))
   }

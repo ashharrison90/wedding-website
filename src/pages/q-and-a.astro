@@ -1,52 +1,44 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import QuestionAndAnswer from "../components/QuestionAndAnswer/QuestionAndAnswer.astro";
+import type { ListItemProps } from "../components/List/ListItemProps";
+import List from "../components/List/List.astro";
 
-const questions: Array<{
-  question: string;
-  answer: string;
-}> = [
+const questions: ListItemProps[] = [
   {
-    question: "How do we book accommodation?",
-    answer: "All the latest information is on the Accommodation tab!",
+    heading: "How do we book accommodation?",
+    text: "All the latest information is on the Accommodation tab!",
   },
   {
-    question: "How long should we book accommodation for?",
-    answer:
-      "The wedding weekend will be from Friday evening till Sunday but you're welcome to stay for longer if you'd like!",
+    heading: "How long should we book accommodation for?",
+    text: "The wedding weekend will be from Friday evening till Sunday but you're welcome to stay for longer if you'd like!",
   },
   {
-    question: "How do we get there?",
-    answer:
-      "We will be providing discounted ferry tickets. See the latest information on the Travel tab!",
+    heading: "How do we get there?",
+    text: "We will be providing discounted ferry tickets. See the latest information on the Travel tab!",
   },
   {
-    question: "Will there be a shuttle service?",
-    answer:
-      "A shuttle service will be provided on the Saturday evening to return guests to Tapnell Farm. If you're staying off site you will need to arrange your own transportation.",
+    heading: "Will there be a shuttle service?",
+    text: "A shuttle service will be provided on the Saturday evening to return guests to Tapnell Farm. If you're staying off site you will need to arrange your own transportation.",
   },
   {
-    question: "Is there parking at the wedding venue?",
-    answer:
-      "Yes, there is ample parking at the wedding venue and at Tapnell Farm so you can easily drive between them.",
+    heading: "Is there parking at the wedding venue?",
+    text: "Yes, there is ample parking at the wedding venue and at Tapnell Farm so you can easily drive between them.",
   },
   {
-    question: "What's the dress code?",
-    answer: "Whatever you feel comfortable in!",
+    heading: "What's the dress code?",
+    text: "Whatever you feel comfortable in!",
   },
   {
-    question: "Are children welcome?",
-    answer:
-      "We'd love to have your children attend the wedding! Please let us know on the RSVP if you'll be bringing any children and what food requirements they have.",
+    heading: "Are children welcome?",
+    text: "We'd love to have your children attend the wedding! Please let us know on the RSVP if you'll be bringing any children and what food requirements they have.",
   },
   {
-    question: "Can we bring our dog?",
-    answer:
-      "Dogs are welcome on Tapnell Farm! You're more than welcome to bring your dog for the weekend but we ask that they stay in your accommodation for the wedding day itself.",
+    heading: "Can we bring our dog?",
+    text: "Dogs are welcome on Tapnell Farm! You're more than welcome to bring your dog for the weekend but we ask that they stay in your accommodation for the wedding day itself.",
   },
 ];
 ---
 
 <Layout title="Q & A">
-  <QuestionAndAnswer questions={questions} />
+  <List items={questions} />
 </Layout>

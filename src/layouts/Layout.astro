@@ -3,10 +3,12 @@ import "../styles/global.css";
 import NavBar from "../components/NavBar/NavBar.astro";
 import DiscoBall from "../components/DiscoBall.astro";
 import { NAME_1, NAME_2, DATE_FORMAT, WEDDING_DATE } from "../constants";
+import Divider from "../components/Divider.astro";
 interface Props {
   title: string;
+  hideHeading?: boolean;
 }
-const { title } = Astro.props;
+const { hideHeading, title } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,12 +28,12 @@ const { title } = Astro.props;
           class="flex flex-wrap items-center justify-center gap-y-2 justify-self-center pb-4"
         >
           <div class="flex flex-col items-center gap-4">
-            <h1
+            <span
               class="font-hero max-w-md text-center text-8xl [text-shadow:_5px_5px_0_var(--color-secondary)]"
               id="hero-title"
             >
               {NAME_1} & {NAME_2}
-            </h1>
+            </span>
             <span class="text-contrast-light text-2xl"
               >{
                 WEDDING_DATE.toLocaleDateString(DATE_FORMAT).replaceAll(
@@ -43,7 +45,17 @@ const { title } = Astro.props;
           </div>
           <DiscoBall />
         </div>
-        <slot />
+        <div class="flex flex-col items-center py-4">
+          {
+            !hideHeading && (
+              <>
+                <h1 class="mb-10 font-serif text-5xl">{title}</h1>
+                <Divider size="large" />
+              </>
+            )
+          }
+          <slot />
+        </div>
       </main>
     </div>
   </body>

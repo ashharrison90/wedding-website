@@ -1,0 +1,124 @@
+---
+interface Props {
+  size: 'small' | 'large';
+}
+
+const { size } = Astro.props;
+---
+<div id={`discoBallOuter-${size}`}>
+  <div id={`discoBall-${size}`} />
+</div>
+
+<style is:global>
+  @keyframes rotateDiscoBall {
+    0% {
+      transform: rotateX(90deg) rotateZ(0deg) rotate(0deg);
+    }
+    100% {
+      transform: rotateX(90deg) rotateZ(360deg) rotate(0deg);
+    }
+  }
+
+  @keyframes rotateDiscoBallMiddle {
+    0% {
+      transform: rotateX(90deg) rotateY(0deg) rotate(0deg);
+    }
+    100% {
+      transform: rotateX(90deg) rotateY(-360deg) rotate(0deg);
+    }
+  }
+
+  @keyframes reflect {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  #discoBallOuter-small, #discoBallOuter-large {
+    transform: rotateZ(-15deg);
+    position: relative;
+    width: fit-content;
+  }
+
+  #discoBall-small, #discoBall-large {
+    transform-style: preserve-3d;
+    animation: rotateDiscoBall 18s linear infinite;
+  }
+
+  #discoBall-small {
+    width: 300px;
+    height: 300px;
+  }
+
+  #discoBall-large {
+    width: 300px;
+    height: 300px;
+  }
+
+  .square {
+    transform-style: preserve-3d;
+    top: 150px;
+    left: 150px;
+    position: absolute;
+  }
+</style>
+
+<script define:vars={{ size }}>
+  const mult = size === "small" ? 2 : 2.5;
+  const radius = 50 * mult;
+  const squareSize = 6.5 * mult;
+  const prec = 19.55;
+  const fuzzy = 0.001;
+  const inc = (Math.PI - fuzzy) / prec;
+  const discoBall = document.getElementById(`discoBall-${size}`);
+
+  for (let t = fuzzy; t < Math.PI; t += inc) {
+    const z = radius * Math.cos(t);
+    const currentRadius =
+      Math.abs(
+        radius * Math.cos(0) * Math.sin(t) -
+          radius * Math.cos(Math.PI) * Math.sin(t),
+      ) / 2.5;
+    const circumference = Math.abs(2 * Math.PI * currentRadius);
+    const squaresThatFit = Math.floor(circumference / squareSize);
+    const angleInc = (Math.PI * 2 - fuzzy) / squaresThatFit;
+
+    for (let i = angleInc / 2 + fuzzy; i < Math.PI * 2; i += angleInc) {
+      const square = document.createElement("div");
+      const squareTile = document.createElement("div");
+      squareTile.style.width = `${squareSize}px`;
+      squareTile.style.height = `${squareSize}px`;
+      squareTile.style.transformOrigin = "0 0 0";
+      squareTile.style.transform = `rotate(${i}rad) rotateY(${t}rad)`;
+      squareTile.style.backgroundColor = randomColor();
+      square.appendChild(squareTile);
+      square.className = "square";
+      squareTile.style.animation = "reflect 2s linear infinite";
+      squareTile.style.animationDelay = `${String(randomNumber(0, 20) / 10)}s`;
+      squareTile.style.backfaceVisibility = "hidden";
+      const x = radius * Math.cos(i) * Math.sin(t);
+      const y = radius * Math.sin(i) * Math.sin(t);
+      square.style.transform = `translateX(${x}px) translateY(${y}px) translateZ(${z}px)`;
+      discoBall?.appendChild(square);
+    }
+  }
+
+  function randomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  function randomColor() {
+    const colours = ["#FEB662", "#F1784D", "#819766", "#F39AA0", "#7DB3D5"];
+    return randomElement(colours);
+  }
+
+  function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+</script>

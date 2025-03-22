@@ -6,8 +6,6 @@
   ],
   "compilerOptions": {
     "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "jsxImportSource": "react"
   },
   "exclude": [
     "dist"

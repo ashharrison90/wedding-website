@@ -1,0 +1,13 @@
+---
+import Divider from "../components/Divider.astro";
+import { NAME_1, NAME_2 } from "../constants";
+const NAME_1_ABBR = NAME_1.charAt(0);
+const NAME_2_ABBR = NAME_2.charAt(0);
+---
+
+<footer class="flex flex-col gap-y-4">
+  <Divider size="large" />
+  <span class="font-hero text-center text-8xl"
+    >{NAME_1_ABBR} & {NAME_2_ABBR}</span
+  >
+</footer>

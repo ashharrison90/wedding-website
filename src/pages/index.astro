@@ -9,15 +9,24 @@ import { NAME_1, NAME_2 } from "../constants";
 ---
 
 <Layout title={`${NAME_1} & ${NAME_2}`} hideHeader>
-  <div class="flex pt-10" slot="after-hero">
+  <div class="flex gap-x-10" slot="after-hero">
     <HeroImage altText="A picture of us" image={usImage} width={600} />
-    <div class="max-w-2xl pl-10">
-      <h1 class="font-serif text-5xl pb-2">Welcome<br>to our wedding!</h1>
+    <div class="max-w-2xl text-left">
+      <h1 class="pb-2 font-serif text-5xl">Welcome<br />to our wedding!</h1>
       <Countdown countdownDate={WEDDING_DATE} />
-      <p>We can't wait to host you for our wedding weekend on the Isle of Wight.</p>
-      <p>We will be hosting guests from Friday through to Sunday, but you're welcome to stay for longer if you like. There's plenty to do on the Isle of Wight from hiking, beaches, breweries, and more!</p>
-      <p>We can only hold the nearby accommodation on Tapnell Farm until June, so make sure to secure your accommodation before then.</p>
-      <button class="bg-contrast text-white px-5 py-2 rounded-md">RSVP</button>
+      <p>
+        We can't wait to host you for our wedding weekend on the Isle of Wight.
+      </p>
+      <p>
+        We will be hosting guests from Friday through to Sunday, but you're
+        welcome to stay for longer if you like. There's plenty to do on the Isle
+        of Wight from hiking, beaches, breweries, and more!
+      </p>
+      <p>
+        We can only hold the nearby accommodation on Tapnell Farm until June, so
+        make sure to secure your accommodation before then.
+      </p>
+      <button class="bg-contrast rounded-md px-5 py-2 text-white">RSVP</button>
     </div>
   </div>
   <Agenda />

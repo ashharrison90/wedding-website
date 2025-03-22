@@ -5,6 +5,7 @@ import DiscoBall from "../components/DiscoBall/DiscoBall.astro";
 import Date from "../components/Date.astro";
 import Hero from "../components/Hero.astro";
 import Divider from "../components/Divider.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -24,31 +25,30 @@ const { hideHeader, title } = Astro.props;
   </head>
   <body>
     <NavBar />
-    <div class="px-4 pb-4">
-      <main class="mx-auto max-w-6xl pt-4">
+    <div class="px-4 pt-4 pb-28">
+      <main class="mx-auto max-w-6xl">
         <div
-          class="flex flex-wrap items-center justify-center gap-y-2 py-15"
+          class="flex flex-wrap items-center justify-center gap-x-10 gap-y-2 pt-8 pb-8 md:pb-20"
         >
-          <div class="flex flex-col gap-4 mr-10">
+          <div class="flex flex-col gap-4">
             <Hero />
             <Date />
           </div>
           <DiscoBall />
         </div>
-        <slot name="after-hero" />
-        { hideHeader ? null : (
-          <h1 class="font-serif text-3xl md:text-5xl text-center">{title}</h1>
-        )}
-        <div class="flex flex-col items-center py-10">
-          <div class="mb-10 w-full">
-            <Divider size="large" />
-          </div>
-          <slot />
-        </div>
-        <footer class="flex flex-col items-center pb-20">
+        <div class="flex flex-col gap-10 text-center">
+          <slot name="after-hero" />
+          {
+            hideHeader ? null : (
+              <h1 class="text-center font-serif text-3xl md:text-5xl">
+                {title}
+              </h1>
+            )
+          }
           <Divider size="large" />
-          <span class="font-hero text-8xl py-10">A & A</span>
-        </footer>
+          <slot />
+          <Footer />
+        </div>
       </main>
     </div>
   </body>

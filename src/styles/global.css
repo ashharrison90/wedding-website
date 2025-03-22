@@ -23,6 +23,9 @@
     @apply text-primary;
     @apply bg-canvas;
   }
+  p {
+    @apply pb-4;
+  }
 }
 
 @layer utilities {

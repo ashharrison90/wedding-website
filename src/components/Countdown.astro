@@ -5,10 +5,10 @@ interface Props {
 const { countdownDate } = Astro.props;
 ---
 
-<span>
+<p class="pb-6">
   <span id="counter" data-countdown-date={countdownDate.getTime()}></span> days to
   go!
-</span>
+</p>
 
 <script>
   function updateCountdown() {

@@ -48,9 +48,17 @@ const { size } = Astro.props;
 
   #discoBall-small, #discoBall-large {
     transform-style: preserve-3d;
+    animation: rotateDiscoBall 18s linear infinite;
+  }
+
+  #discoBall-small {
     width: 300px;
     height: 300px;
-    animation: rotateDiscoBall 18s linear infinite;
+  }
+
+  #discoBall-large {
+    width: 300px;
+    height: 300px;
   }
 
   .square {
@@ -62,7 +70,7 @@ const { size } = Astro.props;
 </style>
 
 <script define:vars={{ size }}>
-  const mult = size === "small" ? 2 : 3;
+  const mult = size === "small" ? 2 : 2.5;
   const radius = 50 * mult;
   const squareSize = 6.5 * mult;
   const prec = 19.55;

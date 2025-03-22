@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import NavBar from "../components/NavBar/NavBar.astro";
 import DiscoBall from "../components/DiscoBall.astro";
-import { NAME_1, NAME_2, WEDDING_DATE } from "../constants";
+import { NAME_1, NAME_2, DATE_FORMAT, WEDDING_DATE } from "../constants";
 interface Props {
   title: string;
 }
@@ -33,7 +33,12 @@ const { title } = Astro.props;
               {NAME_1} & {NAME_2}
             </h1>
             <span class="text-contrast-light text-2xl"
-              >{WEDDING_DATE.toLocaleDateString().replaceAll("/", " · ")}</span
+              >{
+                WEDDING_DATE.toLocaleDateString(DATE_FORMAT).replaceAll(
+                  "/",
+                  " · ",
+                )
+              }</span
             >
           </div>
           <DiscoBall />

@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import NavBar from "../components/NavBar/NavBar.astro";
 import DiscoBall from "../components/DiscoBall.astro";
+import { NAME_1, NAME_2, WEDDING_DATE } from "../constants";
 interface Props {
   title: string;
 }
@@ -28,9 +29,11 @@ const { title } = Astro.props;
             <h1
               class="font-hero max-w-md text-center text-8xl [text-shadow:_5px_5px_0_var(--color-secondary)]"
             >
-              Ash & Anna
+              {NAME_1} & {NAME_2}
             </h1>
-            <span class="text-contrast-light text-2xl">18 · 07 · 2026</span>
+            <span class="text-contrast-light text-2xl"
+              >{WEDDING_DATE.toLocaleDateString().replaceAll("/", " · ")}</span
+            >
           </div>
           <DiscoBall />
         </div>

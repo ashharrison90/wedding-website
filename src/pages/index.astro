@@ -3,9 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import Countdown from "../components/Countdown.astro";
 import HeroImage from "../components/HeroImage.astro";
 import usImage from "../assets/images/home/us.webp";
+import { WEDDING_DATE } from "../constants";
 ---
 
 <Layout title="Ash + Anna">
-  <Countdown countdownDate={new Date("2026-07-18T00:00:00")} />
+  <Countdown countdownDate={WEDDING_DATE} />
   <HeroImage altText="A picture of us" image={usImage} width={600} />
 </Layout>

@@ -5,7 +5,9 @@ type Props = ListItemProps;
 const { heading, subhead, text } = Astro.props;
 ---
 
-<div class="m-auto flex max-w-xl flex-col items-center gap-2 p-2 text-center">
+<div
+  class="text-primary m-auto flex max-w-xl flex-col items-center gap-2 p-2 text-center"
+>
   <h2 class="font-serif text-2xl">{heading}</h2>
   <p class="font-semibold">{subhead}</p>
   <p>{text}</p>

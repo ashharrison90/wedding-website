@@ -11,12 +11,12 @@ interface Props {
 const { altText, image, width, height } = Astro.props;
 ---
 
-<div class="h-fit w-fit">
+<div class="h-fit w-fit flex-1">
   <div class="relative mb-[calc(35%/2)] ml-[calc(30%/2)]">
     <Image
       width={width}
       height={height}
-      class="border-secondary relative z-10 rounded-4xl border-8 md:border-16 mt-2"
+      class="border-secondary relative z-10 mt-2 rounded-4xl border-8 md:border-16"
       src={image}
       alt={altText}
     />

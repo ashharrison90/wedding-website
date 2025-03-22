@@ -2,4 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="RSVP" />
+<Layout title="RSVP">
+  <form method="post" action="/api/rsvp">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" />
+    <label for="rsvp">RSVP</label>
+    <input type="checkbox" id="rsvp" name="rsvp" />
+    <button type="submit">Submit</button>
+  </form>
+</Layout>

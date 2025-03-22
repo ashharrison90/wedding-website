@@ -1,0 +1,62 @@
+---
+import { DiscoBallComponent } from './DiscoBallComponent.tsx';
+
+interface Props {
+  size?: number;
+}
+
+const { size } = Astro.props;
+---
+<DiscoBallComponent size={size} />
+
+<style is:global>
+  @keyframes rotateDiscoBall {
+    0% {
+      transform: rotateX(90deg) rotateZ(0deg) rotate(0deg);
+    }
+    100% {
+      transform: rotateX(90deg) rotateZ(360deg) rotate(0deg);
+    }
+  }
+
+  @keyframes rotateDiscoBallMiddle {
+    0% {
+      transform: rotateX(90deg) rotateY(0deg) rotate(0deg);
+    }
+    100% {
+      transform: rotateX(90deg) rotateY(-360deg) rotate(0deg);
+    }
+  }
+
+  @keyframes reflect {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  #discoBallOuter {
+    transform: rotateZ(-15deg);
+    position: relative;
+    width: fit-content;
+  }
+
+  #discoBall {
+    transform-style: preserve-3d;
+    width: 300px;
+    height: 300px;
+    animation: rotateDiscoBall 18s linear infinite;
+  }
+
+  .square {
+    transform-style: preserve-3d;
+    top: 150px;
+    left: 150px;
+    position: absolute;
+  }
+</style>

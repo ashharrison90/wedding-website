@@ -10,8 +10,8 @@ const { size = "small" } = Astro.props;
   {
     size === "large" && (
       <div class="divider-clip-path mx-2 h-2 max-w-40 grow">
-        <div class="bg-primary h-1" />
-        <div class="bg-secondary h-1" />
+        <div class="bg-primary h-1 rounded-tr-sm" />
+        <div class="bg-secondary h-1 rounded-br-sm" />
       </div>
     )
   }
@@ -24,8 +24,8 @@ const { size = "small" } = Astro.props;
   {
     size === "large" && (
       <div class="divider-clip-path mx-2 h-2 max-w-40 grow transform-(--scale-x)">
-        <div class="bg-primary h-1" />
-        <div class="bg-secondary h-1" />
+        <div class="bg-primary h-1 rounded-tr-sm" />
+        <div class="bg-secondary h-1 rounded-br-sm" />
       </div>
     )
   }

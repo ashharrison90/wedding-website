@@ -1,0 +1,15 @@
+---
+import { DATE_FORMAT, WEDDING_DATE } from "../constants";
+---
+
+<div class="flex flex-col items-center">
+  <div class="border-contrast-light border-b-2 w-30 mb-1" />
+  <span class="text-contrast-light text-2xl"
+  >{
+    WEDDING_DATE.toLocaleDateString(DATE_FORMAT).replaceAll(
+      "/",
+      " · ",
+    )
+  }</span>
+  <div class="border-contrast-light border-b-2 w-30 mt-1" />
+</div>

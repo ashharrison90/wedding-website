@@ -2,14 +2,16 @@
 import "../styles/global.css";
 import NavBar from "../components/NavBar/NavBar.astro";
 import DiscoBall from "../components/DiscoBall.astro";
-import Divider from "../components/Divider.astro";
+import usImage from "../assets/images/home/us.webp";
+import HeroImage from "../components/HeroImage.astro";
 import Date from "../components/Date.astro";
 import Hero from "../components/Hero.astro";
 
 interface Props {
   title: string;
+  hideHeading?: boolean;
 }
-const { title } = Astro.props;
+const { hideHeading, title } = Astro.props;
 ---
 
 <!doctype html>
@@ -34,9 +36,8 @@ const { title } = Astro.props;
           </div>
           <DiscoBall />
         </div>
+        <HeroImage altText="A picture of us" image={usImage} width={600} />
         <div class="flex flex-col items-center py-4">
-          <h1 class="mb-10 font-serif text-3xl md:text-5xl">{title}</h1>
-          <Divider size="large" />
           <slot />
         </div>
       </main>

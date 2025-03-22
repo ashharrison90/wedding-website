@@ -3,11 +3,38 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="RSVP">
-  <form method="post" action="/api/rsvp">
+  <form method="post" id="rsvp-form">
     <label for="name">Full Name</label>
     <input type="text" id="name" name="name" />
-    <label for="rsvp">RSVP</label>
-    <input type="checkbox" id="rsvp" name="rsvp" />
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" />
+    <label for="attending">RSVP</label>
+    <input type="checkbox" id="attending" name="attending" />
     <button type="submit">Submit</button>
   </form>
 </Layout>
+
+<script>
+  async function handleSubmit(event: any) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const response = await fetch("https://submitrsvp-aepvkdfurq-uc.a.run.app", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.get("name"),
+        email: formData.get("email"),
+        attending: formData.get("attending") === "yes"
+      })
+    });
+
+    if (response.ok) {
+      alert("RSVP submitted successfully!");
+    } else {
+      alert("Error submitting RSVP.");
+    }
+  }
+
+  document.getElementById("rsvp-form")?.addEventListener("submit", handleSubmit);
+</script>

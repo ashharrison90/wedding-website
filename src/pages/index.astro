@@ -2,10 +2,10 @@
 import LandingPageLayout from "../layouts/LandingPageLayout.astro";
 import Countdown from "../components/Countdown.astro";
 import Agenda from "../components/Agenda.astro";
-import { WEDDING_DATE } from "../constants";
+import { NAME_1, NAME_2, WEDDING_DATE } from "../constants";
 ---
 
-<LandingPageLayout title="Ash + Anna" hideHeading>
+<LandingPageLayout title={`${NAME_1} & ${NAME_2}`}>
   <Countdown countdownDate={WEDDING_DATE} />
   <Agenda />
 </LandingPageLayout>

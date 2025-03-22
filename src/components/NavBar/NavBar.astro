@@ -1,13 +1,11 @@
 ---
-import NavLink from "./NavLink.astro";
+import NavLinks from "./NavLinks.astro";
+import NavHeading from "./NavHeading.astro";
 ---
 
 <nav
-  class="bg-canvas text-contrast sticky top-0 z-50 flex justify-end gap-2 px-4 py-2"
+  class="bg-canvas sticky top-0 z-50 flex items-center justify-between gap-4 px-4 py-2"
 >
-  <NavLink href="/" text="Home" />
-  <NavLink href="/accommodation" text="Accommodation" />
-  <NavLink href="/travel" text="Travel" />
-  <NavLink href="/q-and-a" text="Q&A" />
-  <NavLink href="/rsvp" text="RSVP" />
+  <NavHeading />
+  <NavLinks />
 </nav>

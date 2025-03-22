@@ -1,0 +1,43 @@
+---
+import { NAME_1, NAME_2 } from "../../constants";
+const NAME_1_ABBR = NAME_1.charAt(0);
+const NAME_2_ABBR = NAME_2.charAt(0);
+---
+
+<span
+  id="nav-heading"
+  class="font-hero text-primary hidden opacity-0 transition-opacity md:block"
+  >{NAME_1} & {NAME_2}</span
+>
+<span
+  id="nav-heading-abbr"
+  class="font-hero text-primary block opacity-0 transition-opacity md:hidden"
+  >{NAME_1_ABBR} & {NAME_2_ABBR}</span
+>
+
+<script>
+  const titleElement = document.getElementById("hero-title");
+  const navHeading = document.getElementById("nav-heading");
+  const navHeadingAbbr = document.getElementById("nav-heading-abbr");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (navHeading && navHeadingAbbr) {
+          if (entry.isIntersecting) {
+            navHeading.classList.add("opacity-0");
+            navHeadingAbbr.classList.add("opacity-0");
+          } else {
+            navHeading.classList.remove("opacity-0");
+            navHeadingAbbr.classList.remove("opacity-0");
+          }
+        }
+      });
+    },
+    {
+      threshold: 0,
+    },
+  );
+  if (titleElement) {
+    observer.observe(titleElement);
+  }
+</script>

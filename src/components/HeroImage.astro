@@ -16,12 +16,12 @@ const { altText, image, width, height } = Astro.props;
     <Image
       width={width}
       height={height}
-      class="border-secondary rounded-4xl border-8 md:border-16"
+      class="border-secondary relative z-10 rounded-4xl border-8 md:border-16"
       src={image}
       alt={altText}
     />
     <svg
-      class="absolute top-[35%] -left-[30%] -z-10 h-full w-full"
+      class="absolute top-[35%] -left-[30%] h-full w-full"
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
     >

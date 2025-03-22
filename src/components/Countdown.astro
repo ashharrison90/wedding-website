@@ -6,8 +6,10 @@ const { countdownDate } = Astro.props;
 ---
 
 <p class="pb-6">
-  <span id="counter" data-countdown-date={countdownDate.getTime()}></span> days to
-  go!
+  <span
+    class="font-bold"
+    id="counter"
+    data-countdown-date={countdownDate.getTime()}></span> days to go!
 </p>
 
 <script>

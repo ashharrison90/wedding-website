@@ -1,0 +1,32 @@
+---
+interface Props {
+  size?: "small" | "large";
+}
+
+const { size = "small" } = Astro.props;
+---
+
+<div class="m-8 flex">
+  {
+    size === "large" && (
+      <div class="divider-clip-path mx-2 h-2 w-40">
+        <div class="bg-primary h-1" />
+        <div class="bg-secondary h-1" />
+      </div>
+    )
+  }
+
+  <div class="h-2 w-2 overflow-hidden rounded-md">
+    <div class="bg-primary h-1"></div>
+    <div class="bg-secondary h-1"></div>
+  </div>
+
+  {
+    size === "large" && (
+      <div class="divider-clip-path mx-2 h-2 w-40 transform-(--scale-x)">
+        <div class="bg-primary h-1" />
+        <div class="bg-secondary h-1" />
+      </div>
+    )
+  }
+</div>

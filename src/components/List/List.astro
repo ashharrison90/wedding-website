@@ -1,0 +1,23 @@
+---
+import ListItem from "./ListItem.astro";
+import ListDivider from "./ListDivider.astro";
+import type { ListItemProps } from "./ListItemProps";
+
+interface Props {
+  items: ListItemProps[];
+}
+const { items } = Astro.props;
+---
+
+<div
+  class="text-primary sticky top-0 z-50 flex flex-col items-center justify-end gap-2 px-4 py-10"
+>
+  {
+    items.map((item, i) => (
+      <>
+        <ListItem {...item} />
+        {i < items.length - 1 && <ListDivider />}
+      </>
+    ))
+  }
+</div>

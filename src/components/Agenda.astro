@@ -1,0 +1,27 @@
+---
+import List from "../components/List/List.astro";
+import ListDivider from "./List/ListDivider.astro";
+
+const agenda = [
+  {
+    heading: "Pre-Wedding Pub Dinner",
+    subhead: "Friday, July 17th 2026",
+    text: "The Cow, Tapnell Farm, PO41 0YJ",
+  },
+  {
+    heading: "Wedding",
+    subhead: "Saturday, July 18th 2026",
+    text: "East Afton Farmhouse, PO40 9UF",
+  },
+  {
+    heading: "Post-Wedding Activities",
+    subhead: "Sunday, July 19th 2026",
+    text: "Tapnell Farm, PO41 0YJ",
+  },
+];
+---
+
+<div class="flex flex-col items-center">
+  <ListDivider size="large" />
+  <List items={agenda} />
+</div>

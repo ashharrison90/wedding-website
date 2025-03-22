@@ -11,6 +11,8 @@
   --color-secondary: #feb662; /* yellow */
   --color-contrast: #536343; /* dark green */
   --color-contrast-light: #819766; /* light green */
+
+  --scale-x: scaleX(-1);
 }
 
 @layer base {
@@ -20,5 +22,11 @@
   html {
     @apply text-primary;
     @apply bg-canvas;
+  }
+}
+
+@layer utilities {
+  .divider-clip-path {
+    clip-path: polygon(0 50%, 100% 100%, 100% 0);
   }
 }

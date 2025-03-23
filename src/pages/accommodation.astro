@@ -1,15 +1,69 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import type { AccommodationProps } from '../components/AccommodationCard/AccommodationProps';
 import accommodation1 from "../assets/images/accommodation/1.webp";
 import accommodation2 from "../assets/images/accommodation/2.webp";
 import accommodation3 from "../assets/images/accommodation/3.webp";
 import accommodation4 from "../assets/images/accommodation/4.webp";
 import accommodation5 from "../assets/images/accommodation/5.webp";
 import accommodation6 from "../assets/images/accommodation/6.webp";
+import AccommodationCard from "../components/AccommodationCard/AccommodationCard.astro";
+import Subheading from "../components/Subheading.astro";
+
+// Safari Tent £1187
+// Cabin £1478
+// Pod £629
+// Modulog £1330
+// Dome £1009
+// Perch £1182
+// Chalet £961
+// Dairymans £1700
+// Manor £4405
+
+const accommodationOptions: AccommodationProps[] = [
+  {
+    title: "Safari Tent",
+    fullyBooked: true,
+    description: ["Perfect for families and groups of up to eight, each safari tent combines rustic chic with practical comforts.", "Each safari tent has its own private shower and toilet, fridge, BBQ, electricity and plenty of board games and outdoor space to keep everyone entertained!"],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm-safari-tents-PH-imagery_2024-01-24-112616_gvnj.jpg",
+    price: 1187,
+    beds: 2,
+    bedsExtra: 1,
+    bathrooms: 1,
+    sleeps: 6,
+    sleepsExtra: 2,
+    link: "https://tapnellfarm.com/stay/toms-eco-lodge-glamping/safari-tents",
+  },
+  {
+    title: "Eco Pod",
+    description: ["Our full-insulated pods have been thoughtfully designed to maximise space, making them perfect for a romantic getaway for two or a snug retreat for a family of four.", "Each Eco Pod has a built-in double bed, a pull-out double sofa bed, open plan kitchenette and living area, shower room and toilet."],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm-Eco-Pod_2024-01-24-112734_ccxb.jpg",
+    price: 0,
+    beds: 1,
+    bedsExtra: 1,
+    bathrooms: 1,
+    sleeps: 2,
+    sleepsExtra: 2,
+    link: "https://tapnellfarm.com/stay/toms-eco-lodge-glamping/eco-pods",
+  },
+  // {
+  //   title: "test",
+  //   description: "",
+  //   imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm-Eco-Pod_2024-01-24-112734_ccxb.jpg",
+  //   price: 0,
+  //   beds: 0,
+  //   bedsExtra: 0,
+  //   bathrooms: 0,
+  //   sleeps: 0,
+  //   sleepsExtra: 0,
+  //   link: "",
+  // },
+]
 ---
 
 <Layout title="Accommodation">
+  <Subheading>Where and how long?</Subheading>
   <p>
     We have reserved Tapnell Farm's <a
       href="https://tapnellfarm.com/stay/toms-eco-lodge-glamping"
@@ -33,7 +87,13 @@ import accommodation6 from "../assets/images/accommodation/6.webp";
     weekend. We will be on site from Thursday till Monday so if you'd like to
     stay longer please feel free.
   </p>
-  <p>Booking information will be added soon.</p>
+  <Subheading>How to book</Subheading>
+  <p>To book, view the options below and email <a href="mailto:stay@tapnellfarm.com">stay@tapnellfarm.com</a> with the details of your booking.</p>
+  <p>You can find more information about all the options on the <a href="https://tapnellfarm.com/stay/availability" target="_blank">Tapnell Farm</a> website. Accommodation will be marked as unavailable on the website for our wedding dates as we have a blanket reservation.</p>
+
+  {accommodationOptions.map((option) => (
+    <AccommodationCard {...option} />
+  ))}
 
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
     <Image class="h-full object-cover" src={accommodation1} alt="" />

@@ -1,0 +1,7 @@
+---
+interface Props {
+  icon: string;
+}
+const { icon } = Astro.props;
+---
+<span class="bg-primary rounded-md text-white px-2 py-1">{icon}: <slot /></span>

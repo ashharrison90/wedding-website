@@ -20,13 +20,15 @@ import Radio from "../components/Radio.astro";
       <Divider />
       <Input id="email" name="email" label="Your email" required />
     </div>
-    <Button type="submit" text="Submit RSVP" />
+    <Button id="submit_button" type="submit" text="Submit RSVP" />
   </form>
 </Layout>
 
 <script>
   async function handleSubmit(event: any) {
     event.preventDefault();
+
+    document.getElementById("submit_button")?.setAttribute("disabled", "true");
 
     const formData = new FormData(event.target);
     const response = await fetch("https://submitrsvp-aepvkdfurq-uc.a.run.app", {
@@ -42,6 +44,7 @@ import Radio from "../components/Radio.astro";
         email: formData.get("email"),
       })
     });
+    document.getElementById("submit_button")?.removeAttribute("disabled");
 
     if (response.ok) {
       alert("RSVP submitted successfully!");

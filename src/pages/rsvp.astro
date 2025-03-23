@@ -1,16 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Input from "../components/Input.astro";
+import Checkbox from "../components/Checkbox.astro";
+import Button from "../components/Button.astro";
+import Divider from "../components/Divider.astro";
 ---
 
 <Layout title="RSVP">
-  <form method="post" id="rsvp-form">
-    <label for="name">Full Name</label>
-    <input type="text" id="name" name="name" />
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email" />
-    <label for="attending">RSVP</label>
-    <input type="checkbox" id="attending" name="attending" />
-    <button type="submit">Submit</button>
+  <p>Please RSVP for your entire group.</p>
+
+  <form class="flex flex-col gap-16 items-center" method="post" id="rsvp-form">
+    <div class="flex flex-col gap-4">
+      <Input id="guest_name" name="guest_name" label="Your name" />
+      <Input id="guest_plus_one_name" name="guest_plus_one_name" label="Your plus one's name" />
+      <Checkbox class="pt-2" id="attending" name="attending" label="Will you be attending?" />
+      <Divider />
+      <Input id="dietary-restrictions" name="dietary-restrictions" label="Do you have any dietary requirements?" />
+      <Input id="children" name="children" label="Are you bringing any children?" />
+      <Input id="song_choice" name="song_choice" label="What song will get you on the dance floor?" />
+      <Divider />
+      <Input id="email" name="email" label="Your email" />
+    </div>
+    <Button type="submit" text="Submit RSVP" />
   </form>
 </Layout>
 

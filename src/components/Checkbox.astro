@@ -1,0 +1,59 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export type Props = {
+  id: string;
+  name: string;
+  label: string;
+  class?: string;
+};
+
+const { id, name, label, class: className } = Astro.props;
+---
+
+<div class={className}>
+  <label for={id} class="relative block cursor-pointer select-none">
+    <input
+      id={id}
+      name={name}
+      type="checkbox"
+      class="h-0 w-0 cursor-pointer appearance-none outline-none"
+    />
+    <span class="pl-2">
+      {label}
+    </span>
+  </label>
+</div>
+
+<style>
+	input::before {
+    position: absolute;
+    display: block;
+    background: var(--color-white);
+    border: 2px solid var(--color-secondary);
+    border-radius: 4px;
+    height: 24px;
+    width: 24px;
+    top: 0;
+    translate: -100% 0%;
+		content: '';
+	}
+
+	input:checked::before {
+    background-color: var(--color-secondary)
+	}
+
+	input:checked::after {
+    position: absolute;
+    display: block;
+    height: 24px;
+    width: 24px;
+    top: 0;
+    translate: -100% 0%;
+		content: '';
+    background-repeat: no-repeat;
+    background-position: center;
+		/** inline unicons checkmark SVG */
+		background-image: url("data:image/svg+xml;utf-8,<svg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M9.04731 1.01279C9.34958 1.296 9.36503 1.77062 9.08182 2.07289L4.19342 7.29032C3.77774 7.73398 3.07363 7.73398 2.65795 7.29032L1.01279 5.53443C0.729585 5.23216 0.745038 4.75754 1.04731 4.47433C1.34958 4.19112 1.8242 4.20658 2.1074 4.50884L3.42568 5.91586L7.98721 1.04731C8.27042 0.745037 8.74504 0.729585 9.04731 1.01279Z' fill='white'/></svg>");
+	}
+</style>

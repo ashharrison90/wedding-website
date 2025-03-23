@@ -6,18 +6,19 @@ import Date from "../components/Date.astro";
 import Hero from "../components/Hero.astro";
 import Divider from "../components/Divider.astro";
 import Footer from "../components/Footer.astro";
+import classnames from "classnames";
 
 interface Props {
   title: string;
-  contentWidth?: 'small' | 'medium' | 'large';
+  contentWidth?: "small" | "medium" | "large";
   hideHeader?: boolean;
 }
 
-const { hideHeader, contentWidth = 'medium', title } = Astro.props;
+const { hideHeader, contentWidth = "medium", title } = Astro.props;
 const tailwindWidths = {
-  small: 'xl',
-  medium: '4xl',
-  large: '6xl',
+  small: "xl",
+  medium: "4xl",
+  large: "6xl",
 };
 ---
 
@@ -33,7 +34,13 @@ const tailwindWidths = {
   <body>
     <NavBar />
     <div class="px-2 pt-4 pb-16 md:px-4 md:pb-28">
-      <main class={`mx-auto max-w-${tailwindWidths[contentWidth]}`}>
+      <main
+        class={classnames("mx-auto", {
+          "max-w-xl": contentWidth === "small",
+          "max-w-4xl": contentWidth === "medium",
+          "max-w-6xl": contentWidth === "large",
+        })}
+      >
         <div
           class="flex flex-col items-center justify-center gap-x-10 gap-y-2 pt-8 pb-8 md:flex-row md:pb-20"
         >

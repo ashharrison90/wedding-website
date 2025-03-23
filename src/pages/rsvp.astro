@@ -33,12 +33,12 @@ import Radio from "../components/Radio.astro";
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        guest_name: formData.get("guest_name"),
-        guest_plus_one_name: formData.get("guest_plus_one_name"),
+        guestName: formData.get("guest_name"),
+        guestPlusOneName: formData.get("guest_plus_one_name"),
         attending: formData.get("attending") === "yes",
-        dietary_restrictions: formData.get("dietary_restrictions"),
+        dietaryRestrictions: formData.get("dietary_restrictions"),
         children: formData.get("children"),
-        song_choice: formData.get("song_choice"),
+        songChoice: formData.get("song_choice"),
         email: formData.get("email"),
       })
     });

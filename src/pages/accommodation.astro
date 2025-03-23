@@ -10,6 +10,7 @@ import accommodation5 from "../assets/images/accommodation/5.webp";
 import accommodation6 from "../assets/images/accommodation/6.webp";
 import AccommodationCard from "../components/AccommodationCard/AccommodationCard.astro";
 import Subheading from "../components/Subheading.astro";
+import Divider from "../components/Divider.astro";
 
 // Safari Tent £1187
 // Cabin £1478
@@ -87,6 +88,7 @@ const accommodationOptions: AccommodationProps[] = [
     weekend. We will be on site from Thursday till Monday so if you'd like to
     stay longer please feel free.
   </p>
+  <Divider />
   <Subheading>How to book</Subheading>
   <p>To book, view the options below and email <a href="mailto:stay@tapnellfarm.com">stay@tapnellfarm.com</a> with the details of your booking.</p>
   <p>You can find more information about all the options on the <a href="https://tapnellfarm.com/stay/availability" target="_blank">Tapnell Farm</a> website. Accommodation will be marked as unavailable on the website for our wedding dates as we have a blanket reservation.</p>
@@ -94,13 +96,4 @@ const accommodationOptions: AccommodationProps[] = [
   {accommodationOptions.map((option) => (
     <AccommodationCard {...option} />
   ))}
-
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-    <Image class="h-full object-cover" src={accommodation1} alt="" />
-    <Image class="h-full object-cover" src={accommodation2} alt="" />
-    <Image class="h-full object-cover" src={accommodation3} alt="" />
-    <Image class="h-full object-cover" src={accommodation4} alt="" />
-    <Image class="h-full object-cover" src={accommodation5} alt="" />
-    <Image class="h-full object-cover" src={accommodation6} alt="" />
-  </div>
 </Layout>

@@ -14,7 +14,7 @@ import Radio from "../components/Radio.astro";
       <Input id="guest_name" name="guest_name" label="Your name" required />
       <Input id="guest_plus_one_name" name="guest_plus_one_name" label="Your plus one's name" />
       <Radio label="Will you be attending?" name="attending" options={[{ id: "yes", value: "yes", label: "Yes" }, { id: "no", value: "no", label: "No" }]} required />
-      <Input id="dietary-restrictions" name="dietary-restrictions" label="Do you have any dietary requirements?" required />
+      <Input id="dietary_restrictions" name="dietary_restrictions" label="Do you have any dietary requirements?" required />
       <Input id="children" name="children" label="Are you bringing any children?" required />
       <Input id="song_choice" name="song_choice" label="What song will get you on the dance floor?" required />
       <Divider />
@@ -33,9 +33,13 @@ import Radio from "../components/Radio.astro";
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: formData.get("name"),
+        guest_name: formData.get("guest_name"),
+        guest_plus_one_name: formData.get("guest_plus_one_name"),
+        attending: formData.get("attending") === "yes",
+        dietary_restrictions: formData.get("dietary_restrictions"),
+        children: formData.get("children"),
+        song_choice: formData.get("song_choice"),
         email: formData.get("email"),
-        attending: formData.get("attending") === "yes"
       })
     });
 

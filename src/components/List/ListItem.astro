@@ -1,4 +1,5 @@
 ---
+import Subheading from "../Subheading.astro";
 import type { ListItemProps } from "./ListItemProps";
 
 type Props = ListItemProps;
@@ -6,9 +7,9 @@ const { heading, subhead, text } = Astro.props;
 ---
 
 <div
-  class="text-primary m-auto flex max-w-xl flex-col items-center gap-2 text-center"
+  class="text-primary m-auto flex flex-col items-center gap-2 text-center"
 >
-  <h2 class="font-serif text-2xl">{heading}</h2>
+  <Subheading>{heading}</Subheading>
   <p class="font-semibold">{subhead}</p>
-  <p>{text}</p>
+  <p set:html={text} />
 </div>

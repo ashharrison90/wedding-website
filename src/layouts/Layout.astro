@@ -9,9 +9,16 @@ import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
+  contentWidth?: 'small' | 'medium' | 'large';
   hideHeader?: boolean;
 }
-const { hideHeader, title } = Astro.props;
+
+const { hideHeader, contentWidth = 'medium', title } = Astro.props;
+const tailwindWidths = {
+  small: 'xl',
+  medium: '4xl',
+  large: '6xl',
+};
 ---
 
 <!doctype html>
@@ -26,7 +33,7 @@ const { hideHeader, title } = Astro.props;
   <body>
     <NavBar />
     <div class="px-2 pt-4 pb-16 md:px-4 md:pb-28">
-      <main class="mx-auto max-w-6xl">
+      <main class={`mx-auto max-w-${tailwindWidths[contentWidth]}`}>
         <div
           class="flex flex-col items-center justify-center gap-x-10 gap-y-2 pt-8 pb-8 md:flex-row md:pb-20"
         >

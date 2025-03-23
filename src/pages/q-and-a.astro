@@ -6,15 +6,15 @@ import List from "../components/List/List.astro";
 const questions: ListItemProps[] = [
   {
     heading: "How do we book accommodation?",
-    text: "All the latest information is on the Accommodation tab!",
+    text: "All the latest information is on the <a href='/accommodation'>Accommodation</a> tab!",
   },
   {
     heading: "How long should we book accommodation for?",
-    text: "The wedding weekend will be from Friday evening till Sunday but you're welcome to stay for longer if you'd like!",
+    text: "The wedding weekend will be from Friday evening till Sunday but you're welcome to stay for longer if you'd like.",
   },
   {
     heading: "How do we get there?",
-    text: "We will be providing discounted ferry tickets. See the latest information on the Travel tab!",
+    text: "We will be providing discounted ferry tickets. See the latest information on the <a href='/travel'>Travel</a> tab!",
   },
   {
     heading: "Will there be a shuttle service?",
@@ -39,6 +39,6 @@ const questions: ListItemProps[] = [
 ];
 ---
 
-<Layout title="Q & A">
+<Layout title="Q & A" contentWidth="small">
   <List items={questions} />
 </Layout>

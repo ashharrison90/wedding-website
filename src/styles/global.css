@@ -18,6 +18,7 @@
 @layer base {
   a {
     @apply underline;
+    @apply text-contrast-light;
   }
   html {
     @apply text-primary;

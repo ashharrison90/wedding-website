@@ -74,3 +74,30 @@ const { hideHeader, contentWidth = "medium", title } = Astro.props;
     min-height: 100%;
   }
 </style>
+
+<script data-astro-rerun>
+  function watchTitle() {
+    const titleElement = document.getElementById("hero-title");
+    const navHeading = document.getElementById("nav-heading");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (navHeading) {
+            if (entry.isIntersecting) {
+              navHeading.classList.add("opacity-0");
+            } else {
+              navHeading.classList.remove("opacity-0");
+            }
+          }
+        });
+      },
+      {
+        threshold: 0,
+      },
+    );
+    if (titleElement) {
+      observer.observe(titleElement);
+    }
+  }
+  watchTitle();
+</script>

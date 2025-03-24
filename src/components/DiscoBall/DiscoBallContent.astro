@@ -48,8 +48,8 @@ function randomNumber(min: number, max: number) {
 }
 ---
 
-<div id={`discoBallOuter-${size}`}>
-  <div id={`discoBall-${size}`}>
+<div id="discoBall">
+  <div id="discoBallInner">
     {
       coords.map(([[i, t], [x, y, z]]) => (
         <div
@@ -79,19 +79,10 @@ function randomNumber(min: number, max: number) {
 <style is:global>
   @keyframes rotateDiscoBall {
     0% {
-      transform: rotateX(90deg) rotateZ(0deg) rotate(0deg);
+      transform: rotateX(90deg) rotateZ(0deg);
     }
     100% {
-      transform: rotateX(90deg) rotateZ(360deg) rotate(0deg);
-    }
-  }
-
-  @keyframes rotateDiscoBallMiddle {
-    0% {
-      transform: rotateX(90deg) rotateY(0deg) rotate(0deg);
-    }
-    100% {
-      transform: rotateX(90deg) rotateY(-360deg) rotate(0deg);
+      transform: rotateX(90deg) rotateZ(360deg);
     }
   }
 
@@ -107,34 +98,26 @@ function randomNumber(min: number, max: number) {
     }
   }
 
-  #discoBallOuter-small,
-  #discoBallOuter-large {
+  #discoBall {
     transform: rotateZ(-15deg);
     transform-style: preserve-3d;
     position: relative;
-    width: fit-content;
   }
 
-  #discoBall-small,
-  #discoBall-large {
+  #discoBallInner {
     transform-style: preserve-3d;
     animation: rotateDiscoBall 18s linear infinite;
   }
 
-  #discoBall-small {
-    width: 300px;
-    height: 300px;
-  }
-
-  #discoBall-large {
+  #discoBallInner {
     width: 300px;
     height: 300px;
   }
 
   .square {
     transform-style: preserve-3d;
-    top: 150px;
-    left: 150px;
+    top: 50%;
+    left: 50%;
     position: absolute;
   }
 </style>

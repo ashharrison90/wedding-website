@@ -1,2 +1,3 @@
 .prettierignore
 **/*.webp
+**/*.svg

@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import type { AccommodationProps } from './AccommodationProps';
-import Subheading from '../Subheading.astro';
 import Tag from './Tag.astro';
 
 type Props = AccommodationProps;
@@ -10,8 +9,8 @@ const { title, imgSrc, description, price, beds, bedsExtra, sleeps, sleepsExtra,
 <div class="flex gap-4 w-full text-left p-4 flex-wrap md:flex-nowrap">
   <Image class="w-full md:w-sm md:self-start" src={imgSrc} alt={title} width="300" height="300"/>
   <div class="flex flex-col grow gap-4">
-    <div class="flex justify-between">
-      <Subheading class={fullyBooked ? 'line-through' : ''}>{title}</Subheading>
+    <div class="flex flex-wrap gap-2 justify-between">
+      <h3 class={`font-serif text-xl ${fullyBooked ? 'line-through' : ''}`}>{title}</h3>
       <div class="flex gap-1 items-center">
         <Tag icon="bed">{beds}{bedsExtra && ` (+${bedsExtra})`}</Tag>
         <Tag icon="people">{sleeps}{sleepsExtra && ` (+${sleepsExtra})`}</Tag>
@@ -23,7 +22,7 @@ const { title, imgSrc, description, price, beds, bedsExtra, sleeps, sleepsExtra,
         {fullyBooked && <p class="text-contrast font-bold">Fully booked</p>}
         {description.map((d) => <p>{d}</p>)}
       </div>
-      <div class="flex justify-between">
+      <div class="flex flex-wrap gap-2 justify-between">
         <a href={link} target="_blank">See on website</a>
         <p class="p-0 font-bold">£{price} for 3 nights (£{Math.round(price/sleeps)} pp)</p>
       </div>

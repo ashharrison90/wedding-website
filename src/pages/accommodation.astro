@@ -1,32 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
 import type { AccommodationProps } from '../components/AccommodationCard/AccommodationProps';
-import accommodation1 from "../assets/images/accommodation/1.webp";
-import accommodation2 from "../assets/images/accommodation/2.webp";
-import accommodation3 from "../assets/images/accommodation/3.webp";
-import accommodation4 from "../assets/images/accommodation/4.webp";
-import accommodation5 from "../assets/images/accommodation/5.webp";
-import accommodation6 from "../assets/images/accommodation/6.webp";
 import AccommodationCard from "../components/AccommodationCard/AccommodationCard.astro";
 import Subheading from "../components/Subheading.astro";
 import Divider from "../components/Divider.astro";
 
-// Safari Tent £1187
-// Cabin £1478
-// Pod £629
-// Modulog £1330
-// Dome £1009
-// Perch £1182
-// Chalet £961
-// Dairymans £1700
-// Manor £4405
-
 const accommodationOptions: AccommodationProps[] = [
   {
     title: "Safari Tent",
-    fullyBooked: true,
-    description: ["Perfect for families and groups of up to eight, each safari tent combines rustic chic with practical comforts.", "Each safari tent has its own private shower and toilet, fridge, BBQ, electricity and plenty of board games and outdoor space to keep everyone entertained!"],
+    fullyBooked: false,
+    description: ["Perfect for families and groups of up to eight.", "Each safari tent has its own private shower and toilet, fridge, BBQ, electricity and plenty of board games and outdoor space!"],
     imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm-safari-tents-PH-imagery_2024-01-24-112616_gvnj.jpg",
     price: 1187,
     beds: 2,
@@ -38,9 +21,10 @@ const accommodationOptions: AccommodationProps[] = [
   },
   {
     title: "Eco Pod",
-    description: ["Our full-insulated pods have been thoughtfully designed to maximise space, making them perfect for a romantic getaway for two or a snug retreat for a family of four.", "Each Eco Pod has a built-in double bed, a pull-out double sofa bed, open plan kitchenette and living area, shower room and toilet."],
+    fullyBooked: false,
+    description: ["Perfect for a romantic getaway for two or a snug retreat for a family of four.", "Each Eco Pod has a built-in double bed, a pull-out double sofa bed, open plan kitchenette and living area, shower room and toilet."],
     imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm-Eco-Pod_2024-01-24-112734_ccxb.jpg",
-    price: 0,
+    price: 629,
     beds: 1,
     bedsExtra: 1,
     bathrooms: 1,
@@ -48,18 +32,99 @@ const accommodationOptions: AccommodationProps[] = [
     sleepsExtra: 2,
     link: "https://tapnellfarm.com/stay/toms-eco-lodge-glamping/eco-pods",
   },
-  // {
-  //   title: "test",
-  //   description: "",
-  //   imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm-Eco-Pod_2024-01-24-112734_ccxb.jpg",
-  //   price: 0,
-  //   beds: 0,
-  //   bedsExtra: 0,
-  //   bathrooms: 0,
-  //   sleeps: 0,
-  //   sleepsExtra: 0,
-  //   link: "",
-  // },
+  {
+    title: "Modulog",
+    fullyBooked: false,
+    description: ["Modulogs are perfectly proportioned for groups of up to six.", "Each modulog has two double bedrooms, a shower room and an open plan kitchen-diner and lounge with a sofa bed."],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/Toms-Eco-Lodge-Tapnell-Farm-Modulog-outside-evening.jpg",
+    price: 1330,
+    beds: 2,
+    bathrooms: 1,
+    sleeps: 4,
+    sleepsExtra: 2,
+    link: "https://tapnellfarm.com/stay/toms-eco-lodge-glamping/modulogs",
+  },
+  {
+    title: "Wood Cabin",
+    fullyBooked: false,
+    description: ["Wood Cabins are spacious enough to comfortably sleep up to ten guests.", "Each modern cabin features an open plan living space, fully fitted kitchen, three bedrooms, a bathroom and a shower room."],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm_Toms-Eco-Lodges_Cabins-5.jpg",
+    price: 1478,
+    beds: 3,
+    bathrooms: 2,
+    sleeps: 8,
+    sleepsExtra: 2,
+    link: "https://tapnellfarm.com/stay/toms-eco-lodge-glamping/wood-cabins",
+  },
+  {
+    title: "Dome",
+    fullyBooked: false,
+    description: ["Each Dome includes a log store, adjoining en-suite bathroom (shower and toilet) and separate kitchenette.", "The actual Dome interior is open plan living / sleeping, with a dividing wall for the bunk room."],
+    imgSrc: "https://tapnellfarm.com/assets/images/general/Tapnell-Farm-Dome-Meadow-view-bbq_2022.jpg",
+    price: 1009,
+    beds: 1,
+    bathrooms: 1,
+    sleeps: 4,
+    sleepsExtra: 2,
+    link: "https://tapnellfarm.com/stay/toms-eco-lodge-glamping/dome-meadow",
+  },
+  {
+    title: "Chalet",
+    fullyBooked: false,
+    description: ["West and East Chalet feature open plan living spaces, a kitchenette, three bedrooms, a bathroom. Perfect for a family or group gathering of up to 6 people."],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/Camp-Tapnell_Chalets_2024-24_2024-10-10-151956_odpc.jpg",
+    price: 961,
+    beds: 3,
+    bathrooms: 1,
+    sleeps: 6,
+    link: "https://tapnellfarm.com/stay/camp-tapnell-no-fuss-glamping/chalets",
+  },
+  {
+    title: "Poachers Lodge",
+    fullyBooked: false,
+    description: ["Poachers Lodge is a very comfortable family retreat.", "The house has a large, open plan kitchen diner with double doors that lead out into a spacious patio area.", "Upstairs, there are four bedrooms: three doubles and a twin/king room."],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/Poachers-Lodge_Tapnell-Farm_Wight-Property-Photography-26_2024-01-24-113521_clny.JPG",
+    price: 1255,
+    beds: 4,
+    bathrooms: 3,
+    sleeps: 8,
+    link: "https://tapnellfarm.com/stay/farm-cottages-houses/poachers-lodge",
+  },
+  {
+    title: "Dairyman's Cottage",
+    fullyBooked: false,
+    description: ["The Dairyman’s Cottage has four bedrooms: three doubles en suite and a twin room.", "Downstairs there is an open plan kitchen, diner and sitting room. Outside there is a patio with BBQ, large garden and parking."],
+    imgSrc: "https://tapnellfarm.com/assets/images/general/Dairymans-Cottage-Tapnell-Farm-outside.JPG",
+    price: 1700,
+    beds: 4,
+    bathrooms: 4,
+    sleeps: 8,
+    sleepsExtra: 2,
+    link: "https://tapnellfarm.com/stay/farm-cottages-houses/dairymans-cottage",
+  },
+  {
+    title: "Poachers Perch",
+    fullyBooked: false,
+    description: ["Poachers Perch is an older style, family cabin, that has been newly renovated inside.", "The Perch sleeps up to 6."],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/1G9O8404.jpg",
+    price: 1182,
+    beds: 3,
+    bathrooms: 1,
+    sleeps: 6,
+    link: "https://tapnellfarm.com/stay/farm-cottages-houses/poachers-perch",
+  },
+  {
+    title: "Tapnell Manor",
+    fullyBooked: false,
+    description: ["Tapnell Manor has recently undergone a major refurbishment bringing the interior into the 21st century while maintaining the rustic appeal of an old farmhouse."],
+    imgSrc: "https://tapnellfarm.com/assets/images/icons/Tapnell-Farm_Manor-House_Spring-Gardens-19.jpg",
+    price: 4405,
+    beds: 10,
+    bathrooms: 8,
+    sleeps: 22,
+    sleepsExtra: 4,
+    link: "https://tapnellfarm.com/stay/farm-cottages-houses/tapnell-manor",
+  },
 ]
 ---
 
@@ -91,6 +156,7 @@ const accommodationOptions: AccommodationProps[] = [
   <Divider />
   <Subheading>How to book</Subheading>
   <p>To book, view the options below and email <a href="mailto:stay@tapnellfarm.com">stay@tapnellfarm.com</a> with the details of your booking.</p>
+  <p>Approximate prices are listed below for a Friday to Monday stay.</p>
   <p>You can find more information about all the options on the <a href="https://tapnellfarm.com/stay/availability" target="_blank">Tapnell Farm</a> website. Accommodation will be marked as unavailable on the website for our wedding dates as we have a blanket reservation.</p>
 
   {accommodationOptions.map((option) => (

@@ -2,15 +2,17 @@
 @import "tailwindcss";
 
 @theme {
-  --default-font-family: "Montserrat", sans-serif;
+  --font-sans: "Montserrat", sans-serif;
   --font-serif: "Ultra", serif;
   --font-hero: "Danfo", sans-serif;
 
-  --color-canvas: #f6e8c5; /* light yellow */
-  --color-primary: #f1784d; /* orange */
-  --color-secondary: #feb662; /* yellow */
-  --color-contrast: #536343; /* dark green */
-  --color-contrast-light: #819766; /* light green */
+  --color-canvas: #f6e8c5;
+  --color-primary: #f1784d;
+  --color-primary--alt: #feb662;
+  --color-secondary: #536343;
+  --color-secondary--alt: #819766;
+  --color-tertiary: #7db3d5;
+  --color-tertiary--alt: #f39aa0;
 
   --scale-x: scaleX(-1);
 }
@@ -18,7 +20,7 @@
 @layer base {
   a {
     @apply underline;
-    @apply text-contrast-light;
+    @apply text-secondary--alt;
   }
   html {
     @apply text-primary;

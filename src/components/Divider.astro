@@ -11,21 +11,21 @@ const { size = "small" } = Astro.props;
     size === "large" && (
       <div class="divider-clip-path mx-2 h-2 max-w-40 grow">
         <div class="bg-primary h-1 rounded-tr-sm" />
-        <div class="bg-secondary h-1 rounded-br-sm" />
+        <div class="bg-primary--alt h-1 rounded-br-sm" />
       </div>
     )
   }
 
   <div class="h-2 w-2 overflow-hidden rounded-full">
     <div class="bg-primary h-1"></div>
-    <div class="bg-secondary h-1"></div>
+    <div class="bg-primary--alt h-1"></div>
   </div>
 
   {
     size === "large" && (
       <div class="divider-clip-path mx-2 h-2 max-w-40 grow transform-(--scale-x)">
         <div class="bg-primary h-1 rounded-tr-sm" />
-        <div class="bg-secondary h-1 rounded-br-sm" />
+        <div class="bg-primary--alt h-1 rounded-br-sm" />
       </div>
     )
   }

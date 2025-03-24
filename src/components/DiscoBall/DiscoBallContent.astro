@@ -39,8 +39,14 @@ function randomElement(array: string[]) {
 }
 
 function randomColor() {
-  const colours = ["#FEB662", "#F1784D", "#819766", "#F39AA0", "#7DB3D5"];
-  return randomElement(colours);
+  const backgrounds = [
+    "bg-primary",
+    "bg-primary--alt",
+    "bg-secondary--alt",
+    "bg-tertiary",
+    "bg-tertiary--alt",
+  ];
+  return randomElement(backgrounds);
 }
 
 function randomNumber(min: number, max: number) {
@@ -59,6 +65,7 @@ function randomNumber(min: number, max: number) {
           }}
         >
           <div
+            class={randomColor()}
             style={{
               animation: "reflect 2s linear infinite",
               animationDelay: `${String(randomNumber(0, 20) / 10)}s`,

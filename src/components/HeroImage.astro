@@ -12,7 +12,7 @@ const { altText, image, width, height } = Astro.props;
 ---
 
 <div class="h-fit w-fit flex-1">
-  <div class="relative mb-[calc(35%/2)] ml-[calc(30%/2)]">
+  <div class="relative">
     <Image
       width={width}
       height={height}
@@ -21,7 +21,7 @@ const { altText, image, width, height } = Astro.props;
       alt={altText}
     />
     <svg
-      class="absolute top-[35%] -left-[30%] h-full w-full"
+      class="absolute top-[30%] -left-[30%] h-full w-full"
       viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
     >

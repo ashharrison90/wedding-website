@@ -9,14 +9,41 @@ import Radio from "../components/Radio.astro";
 <Layout title="RSVP">
   <p>Please RSVP for your entire group.</p>
 
-  <form class="flex flex-col gap-16 items-center" method="post" id="rsvp-form">
+  <form class="flex flex-col items-center gap-16" method="post" id="rsvp-form">
     <div class="flex flex-col gap-4">
       <Input id="guest_name" name="guest_name" label="Your name" required />
-      <Input id="guest_plus_one_name" name="guest_plus_one_name" label="Your plus one's name" />
-      <Radio label="Will you be attending?" name="attending" options={[{ id: "yes", value: "yes", label: "Yes" }, { id: "no", value: "no", label: "No" }]} required />
-      <Input id="dietary_restrictions" name="dietary_restrictions" label="Do you have any dietary requirements?" required />
-      <Input id="children" name="children" label="Are you bringing any children?" required />
-      <Input id="song_choice" name="song_choice" label="What song will get you on the dance floor?" required />
+      <Input
+        id="guest_plus_one_name"
+        name="guest_plus_one_name"
+        label="Your plus one's name"
+      />
+      <Radio
+        label="Will you be attending?"
+        name="attending"
+        options={[
+          { id: "yes", value: "yes", label: "Yes" },
+          { id: "no", value: "no", label: "No" },
+        ]}
+        required
+      />
+      <Input
+        id="dietary_restrictions"
+        name="dietary_restrictions"
+        label="Do you have any dietary requirements?"
+        required
+      />
+      <Input
+        id="children"
+        name="children"
+        label="Are you bringing any children?"
+        required
+      />
+      <Input
+        id="song_choice"
+        name="song_choice"
+        label="What song will get you on the dance floor?"
+        required
+      />
       <Divider />
       <Input id="email" name="email" label="Your email" required />
     </div>
@@ -24,8 +51,8 @@ import Radio from "../components/Radio.astro";
   </form>
 </Layout>
 
-<script>
-  async function handleSubmit(event: any) {
+<script data-astro-rerun>
+  async function handleSubmit(event) {
     event.preventDefault();
 
     document.getElementById("submit_button")?.setAttribute("disabled", "true");
@@ -42,7 +69,7 @@ import Radio from "../components/Radio.astro";
         children: formData.get("children"),
         songChoice: formData.get("song_choice"),
         email: formData.get("email"),
-      })
+      }),
     });
     document.getElementById("submit_button")?.removeAttribute("disabled");
 
@@ -53,5 +80,7 @@ import Radio from "../components/Radio.astro";
     }
   }
 
-  document.getElementById("rsvp-form")?.addEventListener("submit", handleSubmit);
+  document
+    .getElementById("rsvp-form")
+    ?.addEventListener("submit", handleSubmit);
 </script>

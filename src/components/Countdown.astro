@@ -12,7 +12,7 @@ const { countdownDate } = Astro.props;
     data-countdown-date={countdownDate.getTime()}></span> days to go!
 </p>
 
-<script>
+<script data-astro-rerun>
   function updateCountdown() {
     const counterEl = document.getElementById("counter");
     const countdownDateMs = parseInt(
@@ -24,7 +24,7 @@ const { countdownDate } = Astro.props;
     }
   }
 
-  function calcDaysRemaining(countdownDateMs: number) {
+  function calcDaysRemaining(countdownDateMs) {
     const MS_IN_DAY = 1000 * 60 * 60 * 24;
     const now = new Date().getTime();
     const difference = Math.max(countdownDateMs - now, 0);

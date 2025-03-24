@@ -1,12 +1,79 @@
 ---
 interface Props {
-  size: 'small' | 'large';
+  size: "small" | "large";
 }
 
 const { size } = Astro.props;
+const mult = size === "small" ? 2 : 2.5;
+const radius = 50 * mult;
+const squareSize = 6.5 * mult;
+const prec = 19.55;
+const fuzzy = 0.001;
+const inc = (Math.PI - fuzzy) / prec;
+
+const coords: Array<[[number, number], [number, number, number]]> = [];
+
+for (let t = fuzzy; t < Math.PI; t += inc) {
+  const z = radius * Math.cos(t);
+  const currentRadius =
+    Math.abs(
+      radius * Math.cos(0) * Math.sin(t) -
+        radius * Math.cos(Math.PI) * Math.sin(t),
+    ) / 2.5;
+  const circumference = Math.abs(2 * Math.PI * currentRadius);
+  const squaresThatFit = Math.floor(circumference / squareSize);
+  const angleInc = (Math.PI * 2 - fuzzy) / squaresThatFit;
+
+  for (let i = angleInc / 2 + fuzzy; i < Math.PI * 2; i += angleInc) {
+    const x = radius * Math.cos(i) * Math.sin(t);
+    const y = radius * Math.sin(i) * Math.sin(t);
+    coords.push([
+      [i, t],
+      [x, y, z],
+    ]);
+  }
+}
+
+function randomElement(array: string[]) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function randomColor() {
+  const colours = ["#FEB662", "#F1784D", "#819766", "#F39AA0", "#7DB3D5"];
+  return randomElement(colours);
+}
+
+function randomNumber(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 ---
+
 <div id={`discoBallOuter-${size}`}>
-  <div id={`discoBall-${size}`} />
+  <div id={`discoBall-${size}`}>
+    {
+      coords.map(([[i, t], [x, y, z]]) => (
+        <div
+          class="square"
+          style={{
+            transform: `translateX(${x}px) translateY(${y}px) translateZ(${z}px)`,
+          }}
+        >
+          <div
+            style={{
+              animation: "reflect 2s linear infinite",
+              animationDelay: `${String(randomNumber(0, 20) / 10)}s`,
+              backfaceVisibility: "hidden",
+              width: `${squareSize}px`,
+              height: `${squareSize}px`,
+              transformOrigin: "0 0 0",
+              backgroundColor: randomColor(),
+              transform: `rotate(${i}rad) rotateY(${t}rad)`,
+            }}
+          />
+        </div>
+      ))
+    }
+  </div>
 </div>
 
 <style is:global>
@@ -40,13 +107,15 @@ const { size } = Astro.props;
     }
   }
 
-  #discoBallOuter-small, #discoBallOuter-large {
+  #discoBallOuter-small,
+  #discoBallOuter-large {
     transform: rotateZ(-15deg);
     position: relative;
     width: fit-content;
   }
 
-  #discoBall-small, #discoBall-large {
+  #discoBall-small,
+  #discoBall-large {
     transform-style: preserve-3d;
     animation: rotateDiscoBall 18s linear infinite;
   }
@@ -68,57 +137,3 @@ const { size } = Astro.props;
     position: absolute;
   }
 </style>
-
-<script define:vars={{ size }}>
-  const mult = size === "small" ? 2 : 2.5;
-  const radius = 50 * mult;
-  const squareSize = 6.5 * mult;
-  const prec = 19.55;
-  const fuzzy = 0.001;
-  const inc = (Math.PI - fuzzy) / prec;
-  const discoBall = document.getElementById(`discoBall-${size}`);
-
-  for (let t = fuzzy; t < Math.PI; t += inc) {
-    const z = radius * Math.cos(t);
-    const currentRadius =
-      Math.abs(
-        radius * Math.cos(0) * Math.sin(t) -
-          radius * Math.cos(Math.PI) * Math.sin(t),
-      ) / 2.5;
-    const circumference = Math.abs(2 * Math.PI * currentRadius);
-    const squaresThatFit = Math.floor(circumference / squareSize);
-    const angleInc = (Math.PI * 2 - fuzzy) / squaresThatFit;
-
-    for (let i = angleInc / 2 + fuzzy; i < Math.PI * 2; i += angleInc) {
-      const square = document.createElement("div");
-      const squareTile = document.createElement("div");
-      squareTile.style.width = `${squareSize}px`;
-      squareTile.style.height = `${squareSize}px`;
-      squareTile.style.transformOrigin = "0 0 0";
-      squareTile.style.transform = `rotate(${i}rad) rotateY(${t}rad)`;
-      squareTile.style.backgroundColor = randomColor();
-      square.appendChild(squareTile);
-      square.className = "square";
-      squareTile.style.animation = "reflect 2s linear infinite";
-      squareTile.style.animationDelay = `${String(randomNumber(0, 20) / 10)}s`;
-      squareTile.style.backfaceVisibility = "hidden";
-      const x = radius * Math.cos(i) * Math.sin(t);
-      const y = radius * Math.sin(i) * Math.sin(t);
-      square.style.transform = `translateX(${x}px) translateY(${y}px) translateZ(${z}px)`;
-      discoBall?.appendChild(square);
-    }
-  }
-
-  function randomElement(array) {
-    return array[Math.floor(Math.random() * array.length)];
-  }
-
-  function randomColor() {
-    const colours = ["#FEB662", "#F1784D", "#819766", "#F39AA0", "#7DB3D5"];
-    return randomElement(colours);
-  }
-
-  function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-</script>

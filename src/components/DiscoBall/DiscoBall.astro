@@ -1,9 +1,129 @@
 ---
-import DiscoBallContent from './DiscoBallContent.astro';
+interface Props {
+  size: number;
+}
+
+const coords: Array<[[number, number], [number, number, number]]> = [];
+
+const { size } = Astro.props;
+const radius = size / 2;
+const squareSize = 16;
+const fuzzy = 0.001;
+const circumference = Math.abs(2 * Math.PI * radius);
+const squaresThatFit = Math.floor(circumference / squareSize) * 0.8;
+const inc = (Math.PI * 2 - fuzzy) / squaresThatFit;
+for (let t = fuzzy; t < Math.PI; t += inc) {
+  const z = radius * Math.cos(t);
+  const currentRadius =
+    Math.abs(
+      radius * Math.cos(0) * Math.sin(t) -
+        radius * Math.cos(Math.PI) * Math.sin(t),
+    ) / 2.5;
+  const currentCirumference = Math.abs(2 * Math.PI * currentRadius);
+  const squaresThatFitCurrent = Math.floor(currentCirumference / squareSize);
+  const angleInc = (Math.PI * 2 - fuzzy) / squaresThatFitCurrent;
+  for (let i = angleInc / 2 + fuzzy; i < Math.PI * 2; i += angleInc) {
+    const x = radius * Math.cos(i) * Math.sin(t);
+    const y = radius * Math.sin(i) * Math.sin(t);
+    coords.push([
+      [i, t],
+      [x, y, z],
+    ]);
+  }
+}
+
+function randomElement(array: string[]) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function randomColor() {
+  const backgrounds = [
+    "bg-primary",
+    "bg-primary--alt",
+    "bg-secondary--alt",
+    "bg-tertiary",
+    "bg-tertiary--alt",
+  ];
+  return randomElement(backgrounds);
+}
+
+function randomNumber(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 ---
-<div class="hidden md:block">
-  <DiscoBallContent size="large" />
+
+<div id="discoBall">
+  <div
+    id="discoBallInner"
+    style={{
+      width: `${size}px`,
+      height: `${size}px`,
+    }}
+  >
+    {
+      coords.map(([[i, t], [x, y, z]]) => (
+        <div
+          class="square"
+          style={{
+            transform: `translateX(${x}px) translateY(${y}px) translateZ(${z}px)`,
+          }}
+        >
+          <div
+            class={randomColor()}
+            style={{
+              animation: "reflect 2s linear infinite",
+              animationDelay: `${String(randomNumber(0, 20) / 10)}s`,
+              backfaceVisibility: "hidden",
+              width: `${squareSize}px`,
+              height: `${squareSize}px`,
+              transformOrigin: "0 0 0",
+              backgroundColor: randomColor(),
+              transform: `rotate(${i}rad) rotateY(${t}rad)`,
+            }}
+          />
+        </div>
+      ))
+    }
+  </div>
 </div>
-<div class="block md:hidden">
-  <DiscoBallContent size="small" />
-</div>
+
+<style is:global>
+  @keyframes rotateDiscoBall {
+    0% {
+      transform: rotateX(90deg) rotateZ(0deg);
+    }
+    100% {
+      transform: rotateX(90deg) rotateZ(360deg);
+    }
+  }
+
+  @keyframes reflect {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  #discoBall {
+    transform: rotateZ(-15deg);
+    transform-style: preserve-3d;
+    position: relative;
+  }
+
+  #discoBallInner {
+    transform-style: preserve-3d;
+    animation: rotateDiscoBall 18s linear infinite;
+  }
+
+  .square {
+    transform-style: preserve-3d;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  }
+</style>

@@ -14,8 +14,6 @@
   --color-secondary--alt: #819766;
   --color-tertiary: #7db3d5;
   --color-tertiary--alt: #f39aa0;
-
-  --scale-x: scaleX(-1);
 }
 
 @layer base {

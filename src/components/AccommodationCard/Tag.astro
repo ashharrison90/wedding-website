@@ -1,12 +1,15 @@
 ---
-import { Icon } from 'astro-icon/components'
+import { Icon } from "astro-icon/components";
 
 interface Props {
   icon: string;
 }
 const { icon } = Astro.props;
 ---
-<span class="flex items-center gap-2 bg-primary rounded-md text-white px-2 py-1 text-nowrap">
+
+<span
+  class="bg-primary text-canvas--alt flex items-center gap-2 rounded-md px-2 py-1 text-nowrap"
+>
   <Icon name={`mdi:${icon}`} />
   <slot />
 </span>

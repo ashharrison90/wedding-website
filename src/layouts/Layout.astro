@@ -86,6 +86,9 @@ const { hideHeader, contentWidth = "medium", title } = Astro.props;
   function watchTitle() {
     const titleElement = document.getElementById("hero-title");
     const navHeading = document.getElementById("nav-heading");
+    const headerHeight = document
+      .querySelector("nav")
+      ?.getBoundingClientRect().height;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -100,6 +103,7 @@ const { hideHeader, contentWidth = "medium", title } = Astro.props;
       },
       {
         threshold: 0,
+        rootMargin: `-${headerHeight}px`,
       },
     );
     if (titleElement) {

@@ -13,7 +13,7 @@ const { id, name, label, required } = Astro.props;
   <label for={id}>{label}{required && " *"}</label>
   <input
     required={required}
-    class="border-primary--alt focus:ring-border-secondary rounded-sm border-2 bg-white px-2 py-1 focus:ring focus:outline-none"
+    class="bg-canvas--alt border-primary--alt focus:ring-border-secondary rounded-sm border-2 px-2 py-1 focus:ring focus:outline-none"
     type="text"
     id={id}
     name={name}

@@ -7,6 +7,7 @@
   --font-hero: "Danfo", sans-serif;
 
   --color-canvas: #f6e8c5;
+  --color-canvas--alt: var(--color-amber-50);
   --color-primary: #f1784d;
   --color-primary--alt: #feb662;
   --color-secondary: #536343;

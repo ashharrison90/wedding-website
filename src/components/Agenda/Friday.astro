@@ -1,0 +1,15 @@
+---
+import List from "../List/List.astro";
+const agenda = [
+  {
+    heading: "Pub dinner",
+    subhead: "7pm",
+    text: "<a href='https://www.google.com/maps/place/The+Cow/@50.6710322,-1.4647325,13.89z/data=!4m14!1m7!3m6!1s0x48747ffa6bf141e1:0x7ce3440df1975f3!2sThe+Cow!8m2!3d50.6793692!4d-1.4713666!16s%2Fg%2F11cnwdn50c!3m5!1s0x48747ffa6bf141e1:0x7ce3440df1975f3!8m2!3d50.6793692!4d-1.4713666!16s%2Fg%2F11cnwdn50c?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D' target='_blank'>The Cow, Tapnell Farm, PO41 0YJ</a>",
+  },
+];
+---
+
+<div class="flex flex-col items-center gap-8">
+  <h2 class="font-serif text-4xl">Friday</h2>
+  <List items={agenda} />
+</div>

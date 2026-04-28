@@ -1,6 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Agenda from "../components/Agenda.astro";
+import Divider from "../components/Divider.astro";
+import FridayAgenda from "../components/Agenda/Friday.astro";
+import SaturdayAgenda from "../components/Agenda/Saturday.astro";
+import SundayAgenda from "../components/Agenda/Sunday.astro";
 import usImage from "../assets/images/home/us.webp";
 import HeroImage from "../components/HeroImage.astro";
 import Countdown from "../components/Countdown.astro";
@@ -31,5 +34,9 @@ import { WEDDING_DATE, NAME_1, NAME_2 } from "../constants";
       >
     </div>
   </div>
-  <Agenda />
+  <FridayAgenda />
+  <Divider size="large" />
+  <SaturdayAgenda />
+  <Divider size="large" />
+  <SundayAgenda />
 </Layout>

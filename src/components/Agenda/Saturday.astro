@@ -1,0 +1,27 @@
+---
+import List from "../List/List.astro";
+const agenda = [
+  {
+    heading: "Guests arrive",
+    subhead: "1pm",
+    text: "<a href='https://www.google.com/maps/place/East+Afton+Farmhouse/@50.6761272,-1.4909063,17z/data=!3m1!4b1!4m6!3m5!1s0x487380041fb20a21:0x6c788e844d959063!8m2!3d50.6761273!4d-1.4860354!16s%2Fg%2F11gbnk5s6m?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D' target='_blank'>East Afton Farmhouse, PO40 9UF</a>",
+  },
+  {
+    heading: "Ceremony",
+    subhead: "1:30pm",
+  },
+  {
+    heading: "Shuttles to Tapnell Farm",
+    subhead: "11pm",
+  },
+  {
+    heading: "Last shuttle leaves",
+    subhead: "12:30am",
+  },
+];
+---
+
+<div class="flex flex-col items-center gap-8">
+  <h2 class="font-serif text-4xl">Saturday</h2>
+  <List items={agenda} />
+</div>

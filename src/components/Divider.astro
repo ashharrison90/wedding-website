@@ -1,4 +1,6 @@
 ---
+import classnames from "classnames";
+
 interface Props {
   size?: "small" | "large";
 }
@@ -6,7 +8,12 @@ interface Props {
 const { size = "small" } = Astro.props;
 ---
 
-<div class="m-8 flex justify-center">
+<div
+  class={classnames("flex justify-center", {
+    "m-4": size === "small",
+    "m-8": size === "large",
+  })}
+>
   {
     size === "large" && (
       <div class="divider-clip-path mx-2 h-2 max-w-40 grow">

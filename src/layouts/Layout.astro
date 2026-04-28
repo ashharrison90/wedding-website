@@ -50,7 +50,7 @@ const { hideHeader, contentWidth = "medium", title } = Astro.props;
         </div>
         <main
           transition:animate="slide"
-          class={classnames("flex flex-col gap-10 text-center mx-auto", {
+          class={classnames("flex flex-col gap-8 text-center mx-auto", {
             "max-w-xl": contentWidth === "small",
             "max-w-4xl": contentWidth === "medium",
             "max-w-6xl": contentWidth === "large",

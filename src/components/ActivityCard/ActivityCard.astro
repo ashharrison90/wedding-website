@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+import type { ActivityProps } from "./ActivityProps";
+import ProgressBar from "./ProgressBar.astro";
+
+type Props = ActivityProps;
+const { id, title, imgSrc, description, link, cost, raised } = Astro.props;
+
+const remaining = Math.max(1, cost - raised);
+---
+
+<div
+  class="bg-canvas--alt border-primary--alt flex flex-col gap-4 overflow-hidden rounded-2xl border-2 text-left"
+  data-activity-card
+  data-activity-id={id}
+  data-activity-cost={cost}
+>
+  <Image
+    class="aspect-video w-full object-cover"
+    src={imgSrc}
+    alt={title}
+    width="400"
+    height="225"
+  />
+  <div class="flex grow flex-col gap-4 p-4 pt-0">
+    <h3 class="font-serif text-xl">{title}</h3>
+    <p class="grow">{description}</p>
+    <a href={link} target="_blank">Learn more</a>
+    <ProgressBar raised={raised} cost={cost} />
+    <div class="flex flex-wrap items-center gap-2">
+      <div
+        class="bg-canvas border-primary--alt flex items-center rounded-sm border-2 focus-within:ring"
+      >
+        <span class="pl-2">£</span>
+        <input
+          class="w-24 bg-transparent px-1 py-1 focus:outline-none"
+          type="number"
+          min="1"
+          step="1"
+          value={remaining}
+          aria-label={`Amount to contribute towards ${title}`}
+          data-amount-input
+        />
+      </div>
+      <button
+        class="bg-secondary disabled:bg-secondary--alt text-canvas--alt grow cursor-pointer rounded-md px-5 py-2 no-underline"
+        type="button"
+        data-contribute-btn
+      >
+        Contribute
+      </button>
+    </div>
+  </div>
+</div>

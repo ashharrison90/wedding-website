@@ -1,0 +1,141 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { ActivityProps } from "../components/ActivityCard/ActivityProps";
+import ActivityCard from "../components/ActivityCard/ActivityCard.astro";
+import {
+  PAYPAL_USERNAME,
+  GET_CONTRIBUTIONS_URL,
+  SUBMIT_CONTRIBUTION_URL,
+} from "../constants";
+
+const activities: ActivityProps[] = [
+  {
+    id: "snorkelling",
+    title: "Snorkelling adventure",
+    description:
+      "Spend a morning exploring vibrant reefs and turquoise water, fish and sea turtles included.",
+    imgSrc: "https://picsum.photos/seed/snorkelling/400/225",
+    link: "https://example.com/snorkelling",
+    cost: 200,
+    raised: 0,
+  },
+  {
+    id: "spa-day",
+    title: "Couples' spa day",
+    description:
+      "A relaxing day of massages and treatments to unwind after all the wedding excitement.",
+    imgSrc: "https://picsum.photos/seed/spa-day/400/225",
+    link: "https://example.com/spa-day",
+    cost: 150,
+    raised: 0,
+  },
+  {
+    id: "helicopter",
+    title: "Sunset helicopter ride",
+    description:
+      "A once-in-a-lifetime helicopter flight along the coast as the sun goes down.",
+    imgSrc: "https://picsum.photos/seed/helicopter/400/225",
+    link: "https://example.com/helicopter",
+    cost: 400,
+    raised: 0,
+  },
+];
+---
+
+<Layout title="Gift Registry" contentWidth="large">
+  <p>
+    Your presence on our big day is the only present we need! But if you're
+    really insistent, you can chip in towards one of our honeymoon adventures
+    below. Every little helps, and we're so grateful.
+  </p>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {activities.map((activity) => <ActivityCard {...activity} />)}
+  </div>
+</Layout>
+
+<script
+  data-astro-rerun
+  define:vars={{
+    PAYPAL_USERNAME,
+    GET_CONTRIBUTIONS_URL,
+    SUBMIT_CONTRIBUTION_URL,
+  }}
+>
+  function updateCard(card, raised) {
+    const cost = Number(card.dataset.activityCost);
+    const percent = Math.min(100, Math.round((raised / cost) * 100));
+    const fill = card.querySelector("[data-progress-fill]");
+    const current = card.querySelector("[data-progress-current]");
+    if (fill) fill.style.width = `${percent}%`;
+    if (current) current.textContent = `£${raised}`;
+    card.dataset.activityRaised = String(raised);
+  }
+
+  // Seed each card's current raised amount from its rendered caption, then pull
+  // live totals from the backend. If the request fails we silently keep the
+  // server-rendered fallback values.
+  async function loadProgress() {
+    document.querySelectorAll("[data-activity-card]").forEach((card) => {
+      const current = card.querySelector("[data-progress-current]");
+      const match = current?.textContent?.match(/£(\d+)/);
+      card.dataset.activityRaised = match ? match[1] : "0";
+    });
+
+    try {
+      const response = await fetch(GET_CONTRIBUTIONS_URL);
+      if (!response.ok) {
+        return;
+      }
+      const totals = await response.json();
+      document.querySelectorAll("[data-activity-card]").forEach((card) => {
+        const id = card.dataset.activityId;
+        if (id in totals) {
+          updateCard(card, Number(totals[id]));
+        }
+      });
+    } catch {
+      // backend not available yet — keep fallback values
+    }
+  }
+
+  async function handleContribute(button) {
+    const card = button.closest("[data-activity-card]");
+    if (!card) return;
+    const input = card.querySelector("[data-amount-input]");
+    const amount = Math.floor(Number(input?.value));
+    if (!amount || amount <= 0) {
+      alert("Please enter an amount greater than £0.");
+      return;
+    }
+
+    // Open PayPal synchronously so the popup blocker doesn't swallow it.
+    window.open(
+      `https://paypal.me/${PAYPAL_USERNAME}/${amount}GBP`,
+      "_blank",
+      "noopener",
+    );
+
+    // Optimistically record the contribution (PayPal.me has no payment callback).
+    button.setAttribute("disabled", "true");
+    try {
+      await fetch(SUBMIT_CONTRIBUTION_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ activityId: card.dataset.activityId, amount }),
+      });
+    } catch {
+      // ignore network errors — we still reflect the contribution locally
+    }
+    button.removeAttribute("disabled");
+
+    const current = Number(card.dataset.activityRaised || 0);
+    updateCard(card, current + amount);
+  }
+
+  document.querySelectorAll("[data-contribute-btn]").forEach((button) => {
+    button.addEventListener("click", () => handleContribute(button));
+  });
+
+  loadProgress();
+</script>

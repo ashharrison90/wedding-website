@@ -6,8 +6,7 @@ export const NAME_2 = "Anna";
 export const DATE_FORMAT: Intl.LocalesArgument = "en-GB";
 
 export const PAYPAL_USERNAME = "ashharrison90";
-// TODO: replace with the real Cloud Run endpoints once the backend is deployed
 export const GET_CONTRIBUTIONS_URL =
-  "https://getcontributions-xxxx-uc.a.run.app";
+  "https://getcontributions-aepvkdfurq-uc.a.run.app";
 export const SUBMIT_CONTRIBUTION_URL =
-  "https://submitcontribution-xxxx-uc.a.run.app";
+  "https://submitcontribution-aepvkdfurq-uc.a.run.app";

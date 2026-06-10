@@ -31,7 +31,7 @@ const activities: ActivityProps[] = [
   },
   {
     id: "spa-day",
-    title: "Couples' spa experience",
+    title: "Spa experience",
     description: "Aromatherapy and deep tissue massage",
     imgSrc:
       "https://admin.renovaspa.com/images/categories/special-for-couples.jpg",
@@ -53,7 +53,7 @@ const activities: ActivityProps[] = [
   {
     id: "dinner",
     title: "Romantic dinner",
-    description: "Private candlelit dinner on the beach",
+    description: "Candlelit dinner on the beach",
     imgSrc:
       "https://heritageresorts.mu/sites/default/files/styles/carousel/public/2025-06/candlelit-dinner-banner.jpg.webp?itok=WO2eEhz9",
     link: "https://www.riu.com/en/hotel/mauritius-island/morne-brabant/hotel-riu-palace-mauritius",
@@ -67,6 +67,26 @@ const activities: ActivityProps[] = [
     imgSrc: "https://www.belombrenaturereserve.com/images/1920X450/quad.jpg",
     link: "https://www.belombrenaturereserve.com/activities/best-quad-biking-in-mauritius",
     cost: 200,
+    raised: 0,
+  },
+  {
+    id: "rum",
+    title: "Rum tasting",
+    description: "Private tour and tasting at a local rum distillery",
+    imgSrc:
+      "https://www.rhumeriedechamarel.com/wp-content/uploads/2023/03/291419687_10159633338707247_408804649930069778_n.jpg",
+    link: "https://www.rhumeriedechamarel.com/en/la-visite-guidee/",
+    cost: 50,
+    raised: 0,
+  },
+  {
+    id: "zipline",
+    title: "Ziplining",
+    description:
+      "Fly through the treetops with Vallé's Zipline Adventures — a high-speed journey over valleys, rivers, and forest canopies.",
+    imgSrc: "https://vallepark.com/wp-content/uploads/2022/09/Zipline5.avif",
+    link: "https://vallepark.com/adventure-activities/zipline/",
+    cost: 150,
     raised: 0,
   },
 ];
@@ -165,6 +185,16 @@ const activities: ActivityProps[] = [
 
   document.querySelectorAll("[data-contribute-btn]").forEach((button) => {
     button.addEventListener("click", () => handleContribute(button));
+
+    const card = button.closest("[data-activity-card]");
+    const input = card?.querySelector("[data-amount-input]");
+    if (input) {
+      const sync = () => {
+        button.disabled = !(Math.floor(Number(input.value)) > 0);
+      };
+      input.addEventListener("input", sync);
+      sync();
+    }
   });
 
   loadProgress();

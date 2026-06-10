@@ -37,15 +37,16 @@ const remaining = Math.max(1, cost - raised);
           type="number"
           min="1"
           step="1"
-          value={remaining}
+          value={0}
           aria-label={`Amount to contribute towards ${title}`}
           data-amount-input
         />
       </div>
       <button
-        class="bg-secondary disabled:bg-secondary--alt text-canvas--alt grow cursor-pointer rounded-md px-5 py-2 no-underline"
+        class="bg-secondary disabled:bg-secondary--alt text-canvas--alt grow cursor-pointer rounded-md px-5 py-2 no-underline disabled:cursor-not-allowed"
         type="button"
         data-contribute-btn
+        disabled
       >
         Contribute
       </button>

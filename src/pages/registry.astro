@@ -1,0 +1,201 @@
+---
+import Layout from "../layouts/Layout.astro";
+import type { ActivityProps } from "../components/ActivityCard/ActivityProps";
+import ActivityCard from "../components/ActivityCard/ActivityCard.astro";
+import {
+  PAYPAL_USERNAME,
+  GET_CONTRIBUTIONS_URL,
+  SUBMIT_CONTRIBUTION_URL,
+} from "../constants";
+
+const activities: ActivityProps[] = [
+  {
+    id: "wakeboarding",
+    title: "Wakeboarding",
+    description: "Private boat hire for wakeboarding and waterskiing",
+    imgSrc:
+      "https://www.vitaminsealtd.com/wp-content/uploads/2021/12/Untitled..jpg",
+    link: "https://www.vitaminsealtd.com/product/water-sports-activities/",
+    cost: 300,
+    raised: 0,
+  },
+  {
+    id: "kayak",
+    title: "Kayaking",
+    description: "Guided kayak tour on the Tamarin river",
+    imgSrc:
+      "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0f/be/d2/e1.jpg",
+    link: "https://www.tripadvisor.co.uk/AttractionProductReview-g293816-d25047721-Afternoon_Guided_Kayak_Tour_on_the_Tamarin_River-Mauritius.html",
+    cost: 100,
+    raised: 0,
+  },
+  {
+    id: "spa-day",
+    title: "Spa experience",
+    description: "Aromatherapy and deep tissue massage",
+    imgSrc:
+      "https://admin.renovaspa.com/images/categories/special-for-couples.jpg",
+    link: "https://renovaspa.com/hotel/3abbfd4c-b988-11e7-b164-00002d3a2f3d/categories",
+    cost: 200,
+    raised: 0,
+  },
+  {
+    id: "whale",
+    title: "Whale watching",
+    description:
+      "Boat tour to see whales and dolphins in their natural habitat",
+    imgSrc:
+      "https://www.whalewatchingmauritius.com/ressources/images/a1745dbc3b41.JPG",
+    link: "https://www.whalewatchingmauritius.com/dolphins-whales-combined.php",
+    cost: 400,
+    raised: 0,
+  },
+  {
+    id: "dinner",
+    title: "Romantic dinner",
+    description: "Candlelit dinner on the beach",
+    imgSrc:
+      "https://heritageresorts.mu/sites/default/files/styles/carousel/public/2025-06/candlelit-dinner-banner.jpg.webp?itok=WO2eEhz9",
+    link: "https://www.riu.com/en/hotel/mauritius-island/morne-brabant/hotel-riu-palace-mauritius",
+    cost: 300,
+    raised: 0,
+  },
+  {
+    id: "quad",
+    title: "Quad biking",
+    description: "Quad bike tour through the Bel Ombre Nature Reserve",
+    imgSrc: "https://www.belombrenaturereserve.com/images/1920X450/quad.jpg",
+    link: "https://www.belombrenaturereserve.com/activities/best-quad-biking-in-mauritius",
+    cost: 200,
+    raised: 0,
+  },
+  {
+    id: "rum",
+    title: "Rum tasting",
+    description: "Private tour and tasting at a local rum distillery",
+    imgSrc:
+      "https://www.rhumeriedechamarel.com/wp-content/uploads/2023/03/291419687_10159633338707247_408804649930069778_n.jpg",
+    link: "https://www.rhumeriedechamarel.com/en/la-visite-guidee/",
+    cost: 50,
+    raised: 0,
+  },
+  {
+    id: "zipline",
+    title: "Ziplining",
+    description:
+      "Fly through the treetops with Vallé's Zipline Adventures — a high-speed journey over valleys, rivers, and forest canopies.",
+    imgSrc: "https://vallepark.com/wp-content/uploads/2022/09/Zipline5.avif",
+    link: "https://vallepark.com/adventure-activities/zipline/",
+    cost: 150,
+    raised: 0,
+  },
+];
+---
+
+<Layout title="Gift Registry" contentWidth="large">
+  <p>
+    Your presence on our big day is the only present we need! If you'd really
+    like to contribute something extra, you can chip in towards one of our
+    honeymoon adventures below.
+  </p>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {activities.map((activity) => <ActivityCard {...activity} />)}
+  </div>
+</Layout>
+
+<script
+  data-astro-rerun
+  define:vars={{
+    PAYPAL_USERNAME,
+    GET_CONTRIBUTIONS_URL,
+    SUBMIT_CONTRIBUTION_URL,
+  }}
+>
+  function updateCard(card, raised) {
+    const cost = Number(card.dataset.activityCost);
+    const percent = Math.min(100, Math.round((raised / cost) * 100));
+    const fill = card.querySelector("[data-progress-fill]");
+    const current = card.querySelector("[data-progress-current]");
+    if (fill) fill.style.width = `${percent}%`;
+    if (current) current.textContent = `£${raised}`;
+    card.dataset.activityRaised = String(raised);
+  }
+
+  // Seed each card's current raised amount from its rendered caption, then pull
+  // live totals from the backend. If the request fails we silently keep the
+  // server-rendered fallback values.
+  async function loadProgress() {
+    document.querySelectorAll("[data-activity-card]").forEach((card) => {
+      const current = card.querySelector("[data-progress-current]");
+      const match = current?.textContent?.match(/£(\d+)/);
+      card.dataset.activityRaised = match ? match[1] : "0";
+    });
+
+    try {
+      const response = await fetch(GET_CONTRIBUTIONS_URL);
+      if (!response.ok) {
+        return;
+      }
+      const totals = await response.json();
+      document.querySelectorAll("[data-activity-card]").forEach((card) => {
+        const id = card.dataset.activityId;
+        if (id in totals) {
+          updateCard(card, Number(totals[id]));
+        }
+      });
+    } catch {
+      // backend not available yet — keep fallback values
+    }
+  }
+
+  async function handleContribute(button) {
+    const card = button.closest("[data-activity-card]");
+    if (!card) return;
+    const input = card.querySelector("[data-amount-input]");
+    const amount = Math.floor(Number(input?.value));
+    if (!amount || amount <= 0) {
+      alert("Please enter an amount greater than £0.");
+      return;
+    }
+
+    // Open PayPal synchronously so the popup blocker doesn't swallow it.
+    window.open(
+      `https://paypal.me/${PAYPAL_USERNAME}/${amount}GBP`,
+      "_blank",
+      "noopener",
+    );
+
+    // Optimistically record the contribution (PayPal.me has no payment callback).
+    button.setAttribute("disabled", "true");
+    try {
+      await fetch(SUBMIT_CONTRIBUTION_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ activityId: card.dataset.activityId, amount }),
+      });
+    } catch {
+      // ignore network errors — we still reflect the contribution locally
+    }
+    button.removeAttribute("disabled");
+
+    const current = Number(card.dataset.activityRaised || 0);
+    updateCard(card, current + amount);
+  }
+
+  document.querySelectorAll("[data-contribute-btn]").forEach((button) => {
+    button.addEventListener("click", () => handleContribute(button));
+
+    const card = button.closest("[data-activity-card]");
+    const input = card?.querySelector("[data-amount-input]");
+    if (input) {
+      const sync = () => {
+        button.disabled = !(Math.floor(Number(input.value)) > 0);
+      };
+      input.addEventListener("input", sync);
+      sync();
+    }
+  });
+
+  loadProgress();
+</script>
